@@ -1,0 +1,6 @@
+{
+  "type": "test",
+  "serviceName": "asdf-provider",
+  "version": "1.0.1",
+  "test": "demo"
+}

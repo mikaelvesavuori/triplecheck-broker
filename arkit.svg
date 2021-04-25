@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="233px" preserveAspectRatio="none" style="width:340px;height:233px;" version="1.1" viewBox="0 0 340 233" width="340px" zoomAndPan="magnify"><defs/><g><!--MD5=[e80bd461753d6c5ec111731420959425]
+cluster Main--><path d="M25,31.5 L55,31.5 A4.5,4.5 0 0 1 58,34.5 L65,51.9844 L87,51.9844 A3,3 0 0 1 90,54.9844 L90,103.5 A3,3 0 0 1 87,106.5 L25,106.5 A3,3 0 0 1 22,103.5 L22,34.5 A3,3 0 0 1 25,31.5 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="65" y1="51.9844" y2="51.9844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="30" x="26" y="45.5059">Main</text><!--MD5=[ed1d20ea533a2a0e7df5ba3c35e56ced]
+cluster Controllers--><path d="M117,24 L191,24 A4.5,4.5 0 0 1 194,27 L201,44.4844 L325,44.4844 A3,3 0 0 1 328,47.4844 L328,111 A3,3 0 0 1 325,114 L117,114 A3,3 0 0 1 114,111 L114,27 A3,3 0 0 1 117,24 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="114" x2="201" y1="44.4844" y2="44.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="74" x="118" y="38.0059">Controllers</text><!--MD5=[114f4823940f317c08f5bedd633c9afd]
+cluster Entities--><path d="M146,138 L196,138 A4.5,4.5 0 0 1 199,141 L206,158.4844 L296,158.4844 A3,3 0 0 1 299,161.4844 L299,218 A3,3 0 0 1 296,221 L146,221 A3,3 0 0 1 143,218 L143,141 A3,3 0 0 1 146,138 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="143" x2="206" y1="158.4844" y2="158.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="147" y="152.0059">Entities</text><ellipse cx="55.8492" cy="77.742" fill="#F8F8F8" rx="17.8492" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="45.3492" y="81.4842">src</text><ellipse cx="220.8584" cy="77.4717" fill="#F8F8F8" rx="90.3584" ry="20.4717" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="159" x="141.3584" y="81.2139">TripleCheckBrokerController</text><!--MD5=[6c9487285b1b092afd3435e5b6148bb6]
+entity _TripleCheckBroker--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="123" x="159.5" y="171"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="103" x="169.5" y="193.0059">TripleCheckBroker</text><!--MD5=[71a32aeb44be822ff892556fb541311b]
+link <b>src</b> to TripleCheckBrokerController--><path d="M74.0469,77.5 C91.0407,77.5 108.035,77.5 125.028,77.5 " fill="none" id="&lt;b&gt;src&lt;/b&gt;-&gt;TripleCheckBrokerController" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="130.302,77.5,121.302,73.5,125.302,77.5,121.302,81.5,130.302,77.5" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[d8654685f0e1e17633b4c75e7af1109c]
+link TripleCheckBrokerController to _TripleCheckBroker--><path d="M221,98.149 C221,117.208 221,146.0479 221,165.6614 " fill="none" id="TripleCheckBrokerController-&gt;_TripleCheckBroker" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="221,170.6849,225,161.6849,221,165.6849,217,161.6849,221,170.6849" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[3c254a22d9d9e51888b93dc8a70938f5]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 11
+skinparam ranksep 22
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+package "Main" {
+  (<b>src</b>)
+}
+
+package "Controllers" {
+  (TripleCheckBrokerController)
+}
+
+
+package "Entities" {
+  rectangle "TripleCheckBroker" as _TripleCheckBroker
+}
+
+(<b>src</b>) -[thickness=1]> (TripleCheckBrokerController)
+(TripleCheckBrokerController) --> _TripleCheckBroker
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>

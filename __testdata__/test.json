@@ -1,0 +1,37 @@
+[
+  { "asdf-provider": { "1.0.0": [{ "demo": { "asdf": "asdf" } }] } },
+  { "some-provider": { "0.0.1": [{ "Should Do Something": { "asdf": 123 } }] } },
+  {
+    "api-provider": [
+      {
+        "1.0.0": [
+          { "Should Take Customer": { "name": "name", "email": "email", "totalPrice": 12345 } },
+          { "Something Here": { "name": "Mikael", "email": "email", "totalPrice": 12345 } },
+          {
+            "Should Take Customer": { "name": "name", "email": "email", "totalPrice": 1234512345 }
+          },
+          {
+            "Something Really Specific": {
+              "name": "Mikael",
+              "email": "mikael@mikael.se",
+              "totalPrice": 100
+            }
+          }
+        ]
+      },
+      {
+        "1.0.1": [
+          {
+            "Something Else Here": {
+              "name": "name",
+              "email": "email",
+              "totalPrice": 12345,
+              "newField": true
+            }
+          }
+        ]
+      },
+      { "1.1.4": [{ "asdf": { "name": "kalle" } }] }
+    ]
+  }
+]

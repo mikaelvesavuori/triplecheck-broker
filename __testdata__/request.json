@@ -1,0 +1,57 @@
+{
+  "body": {
+    "locked": false
+  },
+  "bodyUsed": false,
+  "cf": {
+    "asn": 205199,
+    "city": "Gothenburg",
+    "clientAcceptEncoding": "gzip",
+    "clientTcpRtt": 0,
+    "colo": "CPH",
+    "continent": "EU",
+    "country": "SE",
+    "edgeRequestKeepAliveStatus": 1,
+    "httpProtocol": "HTTP/1.1",
+    "isEUCountry": "1",
+    "latitude": "57.70650",
+    "longitude": "11.96700",
+    "postalCode": "411 23",
+    "region": "Västra Götaland County",
+    "regionCode": "O",
+    "requestPriority": "",
+    "timezone": "Europe/Stockholm",
+    "tlsCipher": "ECDHE-ECDSA-AES128-GCM-SHA256",
+    "tlsClientAuth": {
+      "certFingerprintSHA1": "",
+      "certFingerprintSHA256": "",
+      "certIssuerDN": "",
+      "certIssuerDNLegacy": "",
+      "certIssuerDNRFC2253": "",
+      "certIssuerSKI": "",
+      "certIssuerSerial": "",
+      "certNotAfter": "",
+      "certNotBefore": "",
+      "certPresented": "0",
+      "certRevoked": "0",
+      "certSKI": "",
+      "certSerial": "",
+      "certSubjectDN": "",
+      "certSubjectDNLegacy": "",
+      "certSubjectDNRFC2253": "",
+      "certVerified": "NONE"
+    },
+    "tlsExportedAuthenticator": {
+      "clientFinished": "ac84cb7b54c4888e7f4f2255a1971d51aad91ba2414305147708cbe866756b8d",
+      "clientHandshake": "406866fe4322965756c7c9c28368fd188fe0f127f28f2d8220abefc87e461fe3",
+      "serverFinished": "97adde94439979df38fa13883e77a196469eb31b1a6b5e2549094bfbec6df073",
+      "serverHandshake": "4f9a67ec9fe72c6a317b33c51093ea0c87501b1742a15fa962e3dd94e062a948"
+    },
+    "tlsVersion": "TLSv1.2"
+  },
+  "fetcher": {},
+  "headers": {},
+  "method": "POST",
+  "redirect": "manual",
+  "url": "https://triplecheck-data-service.mikaelvesavuori.workers.dev/publish"
+}
