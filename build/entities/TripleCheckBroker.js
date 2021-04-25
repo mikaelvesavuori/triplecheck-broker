@@ -19,7 +19,14 @@ class TripleCheckBroker {
         let status = 200;
         const errorResponse = 'Not a valid path...';
         const path = pathname.substring(1, pathname.length);
-        const query = search ? search.substring(1, search.length).replace('%40', '@') : null;
+        const query = (() => {
+            if (search) {
+                if (search[0] === '?')
+                    return search.substring(1, search.length).replace('%40', '@');
+                else
+                    return search.replace('%40', '@');
+            }
+        })();
         const key = (() => {
             if (!query)
                 return '';

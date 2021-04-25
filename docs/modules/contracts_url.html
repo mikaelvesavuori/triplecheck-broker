@@ -83,23 +83,48 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="url" class="tsd-anchor"></a>
 					<h3>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>pathname<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>search<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;GET&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;POST&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PUT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DELETE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;OPTIONS&quot;</span><span class="tsd-signature-symbol">; </span>pathname<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>search<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mikaelvesavuori/triplecheck-broker/blob/3b14c04/src/contracts/Url.ts#L1">src/contracts/Url.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/mikaelvesavuori/triplecheck-broker/blob/d5c85b6/src/contracts/Url.ts#L1">contracts/Url.ts:1</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<h5>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;GET&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;POST&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PUT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DELETE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;OPTIONS&quot;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>HTTP method.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>pathname<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The URL.</p>
+									</div>
+									<dl class="tsd-comment-tags">
+										<dt>example</dt>
+										<dd><p>&#39;/dependencies&#39;</p>
+										</dd>
+									</dl>
+								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5>search<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> search<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Any query parameter we have received.</p>
+									</div>
+									<dl class="tsd-comment-tags">
+										<dt>example</dt>
+										<dd><p>&#39;?demo-provider%401.0.0&#39;</p>
+										</dd>
+									</dl>
+								</div>
 							</li>
 						</ul>
 					</div>
@@ -112,8 +137,44 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_brokerresponse.html">contracts/<wbr>Broker<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_contract.html">contracts/<wbr>Contract</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_dbitem.html">contracts/<wbr>DbItem</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_identity.html">contracts/<wbr>Identity</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_request.html">contracts/<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_schema.html">contracts/<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="contracts_test.html">contracts/<wbr>Test</a>
+					</li>
 					<li class="current tsd-kind-module">
 						<a href="contracts_url.html">contracts/<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="controllers_triplecheckbrokercontroller.html">controllers/<wbr>Triple<wbr>Check<wbr>Broker<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="entities_triplecheckbroker.html">entities/<wbr>Triple<wbr>Check<wbr>Broker</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="frameworks_calculatedbkey.html">frameworks/calculate<wbr>DbKey</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="frameworks_messages.html">frameworks/messages</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="index.html">index</a>
 					</li>
 				</ul>
 			</nav>

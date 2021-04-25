@@ -1,5 +1,5 @@
 export declare type Url = {
-    method: string;
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS';
     pathname: string;
-    search: string;
+    search?: string;
 };
