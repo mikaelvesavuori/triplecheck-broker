@@ -46,6 +46,7 @@ class TripleCheckBroker {
                     responseData = await this.getRelations(path, key);
             }
             else if (!query) {
+                console.log('-->', path);
                 if (path === 'tests')
                     responseData = await this.getTests();
                 else if (path === 'contracts')
@@ -56,12 +57,6 @@ class TripleCheckBroker {
                     responseData = await this.getRelations(path);
             }
         }
-        else if (method === 'PUT') {
-            if (path === 'tests')
-                responseData = await this.updateTests(payload);
-            else if (path === 'contracts')
-                responseData = await this.updateContracts(payload);
-        }
         else if (method === 'POST' && path === 'publish')
             responseData = await this.publish(payload);
         else if (method === 'DELETE') {
@@ -69,7 +64,7 @@ class TripleCheckBroker {
             if (path === 'tests')
                 await this.deleteTest(serviceName, version, test);
             if (path === 'contracts')
-                await this.deleteContract(path, serviceName, version, test);
+                await this.deleteContract(serviceName, version);
         }
         else {
             responseData = errorResponse;
@@ -137,26 +132,33 @@ class TripleCheckBroker {
         await this.updateData(key, updatedTests);
         console.log(`Finished updating tests`);
     }
-    async deleteContract(type, serviceName, version = '', testName = '') {
-        if (!type || !serviceName)
-            throw new Error("Missing 'type' and/or 'serviceName' in deleteData()!");
+    async deleteContract(serviceName, version) {
+        if (!serviceName || !version)
+            throw new Error("Missing 'serviceName' and/or 'version' in deleteData()!");
+        const serviceId = `${serviceName}@${version}`;
         const listType = 'contracts';
         const listData = await this.getData(listType);
         if (!listData)
             return;
-        const filteredData = listData.filter((item) => item !== `${serviceName}@${version}`);
+        const filteredData = listData.filter((item) => item !== serviceId);
         await this.updateData(listType, filteredData);
+        await this.updateList('services', [serviceId]);
+        await this.deleteTest(serviceName, version);
         const key = calculateDbKey_1.calculateDbKey({
-            type,
+            type: listType,
             name: serviceName,
             version
         });
         await this.deleteData(key);
-        console.log(`Finished deleting data`);
+        console.log(`Finished deleting contract: "${serviceId}"`);
     }
-    async updateList(listName, services) {
+    async updateList(listName, services, removeServices = false) {
         const currentList = await this.getData(listName);
-        let updatedList = [...currentList, ...services];
+        let updatedList = [];
+        if (removeServices)
+            updatedList = currentList.filter((item) => !services.includes(item));
+        else
+            updatedList = [...currentList, ...services];
         updatedList = Array.from(new Set(updatedList));
         await this.updateData(listName, updatedList);
         return updatedList;
@@ -356,6 +358,7 @@ class TripleCheckBroker {
         return updatedDependents;
     }
     async getServices(service) {
+        console.log('get services', service);
         if (service) {
             const services = await this.getData('services');
             const serviceRegex = new RegExp(service, 'gi');

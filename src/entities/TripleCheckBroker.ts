@@ -66,6 +66,7 @@ export class TripleCheckBroker {
       }
       // Get collections
       else if (!query) {
+        console.log('-->', path);
         if (path === 'tests') responseData = await this.getTests();
         else if (path === 'contracts') responseData = await this.getContracts();
         else if (path === 'services' && !query) responseData = await this.getServices();
@@ -74,19 +75,19 @@ export class TripleCheckBroker {
       }
     }
     // Handle PUT
-    // TODO: Allow for updating by serviceIdentity
-    // TODO: Add flag to block PUT usage
+    /*
     else if (method === 'PUT') {
       if (path === 'tests') responseData = await this.updateTests(payload);
       else if (path === 'contracts') responseData = await this.updateContracts(payload);
     }
+    */
     // Handle POST
     else if (method === 'POST' && path === 'publish') responseData = await this.publish(payload);
     // Handle DELETE (single item)
     else if (method === 'DELETE') {
       const { serviceName, version, test } = payload;
       if (path === 'tests') await this.deleteTest(serviceName, version, test);
-      if (path === 'contracts') await this.deleteContract(path, serviceName, version, test);
+      if (path === 'contracts') await this.deleteContract(serviceName, version);
     }
     // Fallback
     else {
@@ -203,44 +204,48 @@ export class TripleCheckBroker {
   }
 
   /**
-   * @description Delete contract.
+   * @description Delete a contract.
    */
-  private async deleteContract(
-    type: List | string,
-    serviceName: string,
-    version = '',
-    testName = ''
-  ): Promise<void> {
-    if (!type || !serviceName)
-      throw new Error("Missing 'type' and/or 'serviceName' in deleteData()!"); //errorDeleteDataMissingParams
+  private async deleteContract(serviceName: string, version: string): Promise<void> {
+    if (!serviceName || !version)
+      throw new Error("Missing 'serviceName' and/or 'version' in deleteData()!");
+    const serviceId = `${serviceName}@${version}`;
 
     // Update the relevant master list first
     const listType = 'contracts';
     const listData = await this.getData(listType);
     if (!listData) return;
-
-    const filteredData = listData.filter((item: string) => item !== `${serviceName}@${version}`);
+    const filteredData = listData.filter((item: string) => item !== serviceId);
     await this.updateData(listType, filteredData);
+
+    // Update the list of services
+    await this.updateList('services', [serviceId]);
+
+    // Delete all related tests
+    await this.deleteTest(serviceName, version);
 
     // Delete the actual record
     const key = calculateDbKey({
-      type,
+      type: listType,
       name: serviceName,
       version
     });
     await this.deleteData(key);
 
-    console.log(`Finished deleting data`);
+    console.log(`Finished deleting contract: "${serviceId}"`);
   }
 
   /**
    * @description Update the master lists for services, contracts, and tests.
    * The service list maps to a "publish" call's "identity" block ("name" and "version" fields, primarily).
    */
-  private async updateList(listName: List, services: string[]) {
+  private async updateList(listName: List, services: string[], removeServices = false) {
     const currentList = await this.getData(listName);
 
-    let updatedList = [...currentList, ...services];
+    let updatedList = [];
+    if (removeServices)
+      updatedList = currentList.filter((item: string) => !services.includes(item));
+    else updatedList = [...currentList, ...services];
     updatedList = Array.from(new Set(updatedList));
 
     await this.updateData(listName, updatedList);
@@ -381,6 +386,7 @@ export class TripleCheckBroker {
     const cleaned = Object.entries(fixedTests).map((item: any) => ({
       [item[0]]: item[1]
     }));
+
     return cleaned;
   }
 
@@ -462,6 +468,7 @@ export class TripleCheckBroker {
 
   /**
    * @description Orchestrator method to first update dependencies of a service, then the dependents of it.
+   * @todo Update to allow reducing/removing services
    */
   private async updateRelations(identity: Identity, dependencies: string[]) {
     /**
@@ -491,6 +498,7 @@ export class TripleCheckBroker {
 
   /**
    * @description Update aggregated list of a service's dependencies (i.e. what a given service uses).
+   * @todo Enable reducing/removing services and updating dependencies
    */
   private updateDependencies(identity: Identity, dependencies: string[], currentDependencies: any) {
     const { name, version } = identity;
@@ -521,6 +529,7 @@ export class TripleCheckBroker {
 
   /**
    * @description Update aggregated list of a service's dependents (i.e. what services use a given service).
+   * @todo Enable reducing/removing services and updating dependents
    */
   private updateDependents(identity: Identity, dependencies: string[], currentDependents: any) {
     const { name, version } = identity;
@@ -566,6 +575,7 @@ export class TripleCheckBroker {
    * Does not support versions, since it would not really make sense: the response is basically just a list of versions.
    */
   private async getServices(service?: string): Promise<any> {
+    console.log('get services', service);
     // Get single service
     if (service) {
       const services = await this.getData('services');

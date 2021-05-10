@@ -14,7 +14,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "types": ["node"],
+    "types": ["jest", "node"],
   },
   "exclude": ["./node_modules/", "./build/", "__tests__/", "__testdata__/", "implementations/"]
 }
