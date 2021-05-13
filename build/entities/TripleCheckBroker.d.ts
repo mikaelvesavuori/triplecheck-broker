@@ -1,5 +1,5 @@
 import { Repository } from 'triplecheck-core';
-import { BrokerResponse } from '../contracts/BrokerResponse';
+import { BrokerResponse } from '../contracts/Broker';
 import { Url } from '../contracts/Url';
 export declare const createNewBroker: (repository: Repository) => TripleCheckBroker;
 export declare class TripleCheckBroker {

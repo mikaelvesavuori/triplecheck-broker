@@ -46,7 +46,6 @@ class TripleCheckBroker {
                     responseData = await this.getRelations(path, key);
             }
             else if (!query) {
-                console.log('-->', path);
                 if (path === 'tests')
                     responseData = await this.getTests();
                 else if (path === 'contracts')
@@ -61,6 +60,7 @@ class TripleCheckBroker {
             responseData = await this.publish(payload);
         else if (method === 'DELETE') {
             const { serviceName, version, test } = payload;
+            console.log('payload', payload);
             if (path === 'tests')
                 await this.deleteTest(serviceName, version, test);
             if (path === 'contracts')
@@ -142,7 +142,7 @@ class TripleCheckBroker {
             return;
         const filteredData = listData.filter((item) => item !== serviceId);
         await this.updateData(listType, filteredData);
-        await this.updateList('services', [serviceId]);
+        await this.updateList('services', [serviceId], true);
         await this.deleteTest(serviceName, version);
         const key = calculateDbKey_1.calculateDbKey({
             type: listType,
@@ -358,7 +358,6 @@ class TripleCheckBroker {
         return updatedDependents;
     }
     async getServices(service) {
-        console.log('get services', service);
         if (service) {
             const services = await this.getData('services');
             const serviceRegex = new RegExp(service, 'gi');
@@ -380,6 +379,7 @@ class TripleCheckBroker {
         }
         else {
             let services = await this.getData('services');
+            console.log('|||||', services);
             services = services.sort();
             let lastService = '';
             let result = {};

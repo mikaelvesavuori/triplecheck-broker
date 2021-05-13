@@ -1,6 +1,6 @@
 import { Repository, List } from 'triplecheck-core';
 
-import { BrokerResponse } from '../contracts/BrokerResponse';
+import { BrokerResponse } from '../contracts/Broker';
 import { Contract } from '../contracts/Contract';
 import { Test } from '../contracts/Test';
 import { Identity } from '../contracts/Identity';
@@ -11,7 +11,6 @@ import {
   errorRouterMissingParams,
   errorGetDataMissingKey,
   errorUpdateDataMissingData,
-  errorDeleteDataMissingParams,
   warnUpdateContractsMissingRequiredVariables,
   warnUpdateTestsMissingRequiredVariables
 } from '../frameworks/messages';
@@ -66,7 +65,6 @@ export class TripleCheckBroker {
       }
       // Get collections
       else if (!query) {
-        console.log('-->', path);
         if (path === 'tests') responseData = await this.getTests();
         else if (path === 'contracts') responseData = await this.getContracts();
         else if (path === 'services' && !query) responseData = await this.getServices();
@@ -74,18 +72,12 @@ export class TripleCheckBroker {
           responseData = await this.getRelations(path);
       }
     }
-    // Handle PUT
-    /*
-    else if (method === 'PUT') {
-      if (path === 'tests') responseData = await this.updateTests(payload);
-      else if (path === 'contracts') responseData = await this.updateContracts(payload);
-    }
-    */
     // Handle POST
     else if (method === 'POST' && path === 'publish') responseData = await this.publish(payload);
     // Handle DELETE (single item)
     else if (method === 'DELETE') {
       const { serviceName, version, test } = payload;
+      console.log('payload', payload);
       if (path === 'tests') await this.deleteTest(serviceName, version, test);
       if (path === 'contracts') await this.deleteContract(serviceName, version);
     }
@@ -101,9 +93,8 @@ export class TripleCheckBroker {
   /**
    * @description Publish data to our persistence layer.
    * 1. Update aggregated lists of relations: dependencies, dependents
-   * 2. Update aggregated service list
-   * 3. Update contracts
-   * 4. Update tests
+   * 2. Update contracts
+   * 3. Update tests
    */
   private async publish(data: any): Promise<any> {
     const { contracts, tests, dependencies, identity } = data;
@@ -163,7 +154,7 @@ export class TripleCheckBroker {
     serviceVersion: string,
     testName?: string
   ): Promise<void> {
-    if (!serviceName) throw new Error("Missing 'serviceName' in deleteData()!"); //errorDeleteDataMissingParams
+    if (!serviceName) throw new Error("Missing 'serviceName' in deleteData()!");
 
     const key = calculateDbKey({
       type: 'test',
@@ -219,7 +210,7 @@ export class TripleCheckBroker {
     await this.updateData(listType, filteredData);
 
     // Update the list of services
-    await this.updateList('services', [serviceId]);
+    await this.updateList('services', [serviceId], true);
 
     // Delete all related tests
     await this.deleteTest(serviceName, version);
@@ -237,7 +228,7 @@ export class TripleCheckBroker {
 
   /**
    * @description Update the master lists for services, contracts, and tests.
-   * The service list maps to a "publish" call's "identity" block ("name" and "version" fields, primarily).
+   * The service list maps to a `publish` call's `identity` block (`name` and `version` fields, primarily).
    */
   private async updateList(listName: List, services: string[], removeServices = false) {
     const currentList = await this.getData(listName);
@@ -575,7 +566,6 @@ export class TripleCheckBroker {
    * Does not support versions, since it would not really make sense: the response is basically just a list of versions.
    */
   private async getServices(service?: string): Promise<any> {
-    console.log('get services', service);
     // Get single service
     if (service) {
       const services = await this.getData('services');
@@ -600,6 +590,7 @@ export class TripleCheckBroker {
     // Get all
     else {
       let services = await this.getData('services');
+      console.log('|||||', services);
       services = services.sort();
 
       let lastService: string = '';
