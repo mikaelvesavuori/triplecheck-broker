@@ -77,7 +77,6 @@ export class TripleCheckBroker {
     // Handle DELETE (single item)
     else if (method === 'DELETE') {
       const { serviceName, version, test } = payload;
-      console.log('payload', payload);
       if (path === 'tests') await this.deleteTest(serviceName, version, test);
       if (path === 'contracts') await this.deleteContract(serviceName, version);
     }
@@ -101,6 +100,8 @@ export class TripleCheckBroker {
     await this.updateRelations(identity, dependencies);
     await this.updateContracts(contracts);
     await this.updateTests(tests);
+
+    return 'DONE';
   }
 
   //////////////////////////////////////////////////////////////
@@ -590,7 +591,6 @@ export class TripleCheckBroker {
     // Get all
     else {
       let services = await this.getData('services');
-      console.log('|||||', services);
       services = services.sort();
 
       let lastService: string = '';

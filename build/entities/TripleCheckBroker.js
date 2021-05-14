@@ -60,7 +60,6 @@ class TripleCheckBroker {
             responseData = await this.publish(payload);
         else if (method === 'DELETE') {
             const { serviceName, version, test } = payload;
-            console.log('payload', payload);
             if (path === 'tests')
                 await this.deleteTest(serviceName, version, test);
             if (path === 'contracts')
@@ -77,6 +76,7 @@ class TripleCheckBroker {
         await this.updateRelations(identity, dependencies);
         await this.updateContracts(contracts);
         await this.updateTests(tests);
+        return 'DONE';
     }
     async getData(key) {
         if (!key)
@@ -379,7 +379,6 @@ class TripleCheckBroker {
         }
         else {
             let services = await this.getData('services');
-            console.log('|||||', services);
             services = services.sort();
             let lastService = '';
             let result = {};
