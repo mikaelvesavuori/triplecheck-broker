@@ -188,11 +188,10 @@ export class TripleCheckBroker {
       // Delete the actual record if empty
       await this.deleteData(key);
       console.log(`Finished deleting test`);
+    } else {
+      await this.updateData(key, updatedTests);
+      console.log(`Finished updating tests`);
     }
-
-    await this.updateData(key, updatedTests);
-
-    console.log(`Finished updating tests`);
   }
 
   /**

@@ -129,8 +129,10 @@ class TripleCheckBroker {
             await this.deleteData(key);
             console.log(`Finished deleting test`);
         }
-        await this.updateData(key, updatedTests);
-        console.log(`Finished updating tests`);
+        else {
+            await this.updateData(key, updatedTests);
+            console.log(`Finished updating tests`);
+        }
     }
     async deleteContract(serviceName, version) {
         if (!serviceName || !version)
