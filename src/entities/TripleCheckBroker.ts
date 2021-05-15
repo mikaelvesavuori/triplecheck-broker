@@ -218,13 +218,13 @@ export class TripleCheckBroker {
 
     // Delete the actual record
     const key = calculateDbKey({
-      type: listType,
+      type: 'contract',
       name: serviceName,
       version
     });
     await this.deleteData(key);
 
-    console.log(`Finished deleting contract: "${serviceId}"`);
+    console.log(`Finished deleting contract: "${key}"`);
   }
 
   /**

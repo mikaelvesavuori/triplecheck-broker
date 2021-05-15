@@ -145,12 +145,12 @@ class TripleCheckBroker {
         await this.updateList('services', [serviceId], true);
         await this.deleteTest(serviceName, version);
         const key = calculateDbKey_1.calculateDbKey({
-            type: listType,
+            type: 'contract',
             name: serviceName,
             version
         });
         await this.deleteData(key);
-        console.log(`Finished deleting contract: "${serviceId}"`);
+        console.log(`Finished deleting contract: "${key}"`);
     }
     async updateList(listName, services, removeServices = false) {
         const currentList = await this.getData(listName);
