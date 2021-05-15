@@ -163,7 +163,7 @@ export class TripleCheckBroker {
       version: serviceVersion
     });
     const serviceData = await this.getData(key);
-    if (!serviceData || serviceData.length === 0) return;
+    if (!serviceData) return;
 
     // Exclude right test if we were provided a testName, else return none (delete all)
     const updatedTests = serviceData.filter((item: any) => {

@@ -109,7 +109,7 @@ class TripleCheckBroker {
             version: serviceVersion
         });
         const serviceData = await this.getData(key);
-        if (!serviceData || serviceData.length === 0)
+        if (!serviceData)
             return;
         const updatedTests = serviceData.filter((item) => {
             const _testName = Object.keys(item)[0];
