@@ -3,10 +3,12 @@ name: main
 on:
   push:
     branches:
-      - "main"
+      - main
+      - feature/*
+      - feature/**
   pull_request:
     branches:
-      - "main"
+      - main
 
 jobs:
   build-unix:
