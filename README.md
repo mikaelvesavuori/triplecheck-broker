@@ -65,39 +65,39 @@ These are also available in Insomnia format in the repo.
 POST {{BROKER_URL}}/publish
 
 {
-	"identity": {
-		"name": "user-api",
-		"version": "1.1.0"
-	},
-	"dependencies": [
-		"payments-service@1.3.0"
-	],
-	"contracts": [
-		{
-			"user-api": {
-				"1.1.0": {
-					"name": "Someone",
-					"address": "Some Street 123",
-					"age": 35
-				}
-			}
-		}
-	],
-	"tests": [
-		{
-			"user-api": {
-				"1.1.0": [
-					{
-						"Verify identity": {
-							"name": "Carmen",
-							"address": "Ocean View 3000",
-							"age": 27
-						}
-					}
-				]
-			}
-		}
-	]
+  "identity": {
+    "name": "user-api",
+    "version": "1.1.0"
+  },
+  "dependencies": [
+    "payments-service@1.3.0"
+  ],
+  "contracts": [
+    {
+      "user-api": {
+        "1.1.0": {
+          "name": "Someone",
+          "address": "Some Street 123",
+          "age": 35
+        }
+      }
+    }
+  ],
+  "tests": [
+    {
+      "user-api": {
+        "1.1.0": [
+          {
+            "Verify identity": {
+              "name": "Carmen",
+              "address": "Ocean View 3000",
+              "age": 27
+            }
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
@@ -107,37 +107,37 @@ POST {{BROKER_URL}}/publish
 POST {{BROKER_URL}}/publish
 
 {
-	"identity": {
-		"name": "payments-service",
-		"version": "1.3.0"
-	},
-	"dependencies": [],
-	"contracts": [
-		{
-			"payments-service": {
-				"1.3.0": {
-					"userId": "string",
-					"invoiceId": "string",
-					"paidInFull": false
-				}
-			}
-		}
-	],
-	"tests": [
-		{
-			"payments-service": {
-				"1.3.0": [
-					{
-						"User payment update": {
-							"userId": "823hc73nca",
-							"invoiceId": "828612-10273-eff",
-							"paidInFull": true
-						}
-					}
-				]
-			}
-		}
-	]
+  "identity": {
+    "name": "payments-service",
+    "version": "1.3.0"
+  },
+  "dependencies": [],
+  "contracts": [
+    {
+      "payments-service": {
+        "1.3.0": {
+          "userId": "string",
+          "invoiceId": "string",
+          "paidInFull": false
+        }
+      }
+    }
+  ],
+  "tests": [
+    {
+      "payments-service": {
+        "1.3.0": [
+          {
+            "User payment update": {
+              "userId": "823hc73nca",
+              "invoiceId": "828612-10273-eff",
+              "paidInFull": true
+            }
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
@@ -238,8 +238,8 @@ GET {{BROKER_URL}}/tests?payments-service@1.3.0
 DELETE {{BROKER_URL}}/tests
 
 {
-	"serviceName": "payment-service",
-	"version": "1.3.0"
+  "serviceName": "payment-service",
+  "version": "1.3.0"
 }
 ```
 
@@ -249,8 +249,8 @@ DELETE {{BROKER_URL}}/tests
 DELETE {{BROKER_URL}}/tests
 
 {
-	"serviceName": "payments-service",
-	"version": "1.3.0",
-	"test": "User payment update"
+  "serviceName": "payments-service",
+  "version": "1.3.0",
+  "test": "User payment update"
 }
 ```
