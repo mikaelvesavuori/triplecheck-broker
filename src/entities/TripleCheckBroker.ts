@@ -547,7 +547,7 @@ export class TripleCheckBroker {
           const fixedDependents = Array.from(
             new Set(updatedDependents[dependencyName][dependencyVersion])
           );
-          fixedDependents.push(versionedName);
+          if (!fixedDependents.includes(versionedName)) fixedDependents.push(versionedName);
           fixedDependents.sort();
           updatedDependents[dependencyName][dependencyVersion] = fixedDependents;
         }
