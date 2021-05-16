@@ -352,6 +352,7 @@ class TripleCheckBroker {
                     updatedDependents[dependencyName][dependencyVersion] = [versionedName];
                 else {
                     const fixedDependents = Array.from(new Set(updatedDependents[dependencyName][dependencyVersion]));
+                    fixedDependents.push(versionedName);
                     fixedDependents.sort();
                     updatedDependents[dependencyName][dependencyVersion] = fixedDependents;
                 }

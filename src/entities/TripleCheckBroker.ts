@@ -459,7 +459,6 @@ export class TripleCheckBroker {
 
   /**
    * @description Orchestrator method to first update dependencies of a service, then the dependents of it.
-   * @todo Update to allow reducing/removing services
    */
   private async updateRelations(identity: Identity, dependencies: string[]) {
     /**
@@ -548,6 +547,7 @@ export class TripleCheckBroker {
           const fixedDependents = Array.from(
             new Set(updatedDependents[dependencyName][dependencyVersion])
           );
+          fixedDependents.push(versionedName);
           fixedDependents.sort();
           updatedDependents[dependencyName][dependencyVersion] = fixedDependents;
         }
