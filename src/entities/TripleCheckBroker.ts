@@ -40,8 +40,8 @@ export class TripleCheckBroker {
     const query = (() => {
       if (search) {
         // "%40" is "@"
-        if (search[0] === '?') return search.substring(1, search.length).replace('%40', '@');
-        else return search.replace('%40', '@');
+        if (search[0] === '?') return search.substring(1, search.length).replace(/%40/g, '@');
+        else return search.replace(/%40/g, '@');
       }
     })();
 

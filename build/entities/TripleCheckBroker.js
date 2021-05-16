@@ -22,9 +22,9 @@ class TripleCheckBroker {
         const query = (() => {
             if (search) {
                 if (search[0] === '?')
-                    return search.substring(1, search.length).replace('%40', '@');
+                    return search.substring(1, search.length).replace(/%40/g, '@');
                 else
-                    return search.replace('%40', '@');
+                    return search.replace(/%40/g, '@');
             }
         })();
         const key = (() => {
