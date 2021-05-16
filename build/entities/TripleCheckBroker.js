@@ -301,7 +301,7 @@ class TripleCheckBroker {
             let response = {};
             if (!version || version === 'undefined')
                 response = data[service];
-            else
+            else if (data[service])
                 response = data[service][version];
             return response || {};
         }

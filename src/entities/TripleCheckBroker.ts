@@ -450,7 +450,7 @@ export class TripleCheckBroker {
       const [service, version] = key.split('@');
       let response: any = {};
       if (!version || version === 'undefined') response = data[service];
-      else response = data[service][version];
+      else if (data[service]) response = data[service][version];
       return response || {};
     }
 
