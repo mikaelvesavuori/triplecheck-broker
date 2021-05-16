@@ -6,11 +6,7 @@ async function TripleCheckBrokerController(request, body, repository) {
     try {
         const broker = TripleCheckBroker_1.createNewBroker(repository);
         const { responseData, status } = await broker.router(request, body);
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-            'Access-Control-Allow-Headers': '*'
-        };
+        const headers = {};
         return { responseData, status, headers };
     }
     catch (error) {
