@@ -5,7 +5,5 @@ import { DbItem } from '../contracts/DbItem';
  */
 export function calculateDbKey(item: DbItem) {
   const { type, name, version } = item;
-  const key = `${type}#${name}@${version}`;
-
-  return key;
+  return `${type}#${name}@${version}`;
 }

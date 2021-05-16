@@ -48,12 +48,10 @@ export class TripleCheckBroker {
     const key = (() => {
       if (!query) return '';
       const [name, version] = query.split('@');
-      const key = calculateDbKey({ type: path, name, version });
-      return key;
+      return calculateDbKey({ type: path, name, version });
     })();
 
     // Handle GET
-    // TODO: Allow for getting by serviceIdentity, test/exclude scopes etc
     if (method === 'GET') {
       // Get singles
       if (query) {
@@ -67,7 +65,7 @@ export class TripleCheckBroker {
       else if (!query) {
         if (path === 'tests') responseData = await this.getTests();
         else if (path === 'contracts') responseData = await this.getContracts();
-        else if (path === 'services' && !query) responseData = await this.getServices();
+        else if (path === 'services') responseData = await this.getServices();
         else if (path === 'dependencies' || path === 'dependents')
           responseData = await this.getRelations(path);
       }
@@ -244,7 +242,6 @@ export class TripleCheckBroker {
     return updatedList;
   }
 
-  // TODO: Verify that this works
   handleError(message: string, status = 400): BrokerResponse {
     return {
       responseData: JSON.stringify(message),
@@ -258,7 +255,6 @@ export class TripleCheckBroker {
 
   /**
    * @description Get all contracts. Adds object wrappers for service name and version.
-   * @todo Consider refactoring/merging with getTests()
    */
   private async getContracts(serviceId?: string): Promise<any> {
     const services = await this.getData('contracts');
@@ -293,16 +289,14 @@ export class TripleCheckBroker {
     });
 
     // Return an array with service-named objects
-    const cleaned = Object.entries(fixedContracts).map((item: any) => ({
+    return Object.entries(fixedContracts).map((item: any) => ({
       [item[0]]: item[1]
     }));
-    return cleaned;
   }
 
   /**
    * @description Utility method to handle updating contracts. Updates contract version "in-place",
    * overwriting whatever was there before.
-   * @todo Consider refactoring/merging with updateTests()
    */
   private async updateContracts(contracts: Contract[]): Promise<void> {
     const type = 'contract';
@@ -338,7 +332,6 @@ export class TripleCheckBroker {
 
   /**
    * @description Get all tests.
-   * @todo Consider refactoring/merging with getContracts()
    */
   private async getTests(serviceId?: string) {
     const services = await this.getData('tests');
@@ -374,16 +367,13 @@ export class TripleCheckBroker {
     });
 
     // Return an array with service-named objects
-    const cleaned = Object.entries(fixedTests).map((item: any) => ({
+    return Object.entries(fixedTests).map((item: any) => ({
       [item[0]]: item[1]
     }));
-
-    return cleaned;
   }
 
   /**
    * @description Utility method to handle updating tests.
-   * @todo Consider refactoring/merging with updateContracts()
    */
   private async updateTests(tests: Test[]): Promise<void> {
     const type = 'test';
@@ -417,10 +407,10 @@ export class TripleCheckBroker {
       addTests(newTests);
 
       // Put each test in its own object within a wrapping array
-      const cleanedTests = Object.entries(updatedTests).map((test: any) => {
-        const [name, testData] = test;
+      const cleanedTests = Object.entries(updatedTests).map((updatedTest: any) => {
+        const [testName, testData] = updatedTest;
         return {
-          [name]: testData
+          [testName]: testData
         };
       });
 
@@ -488,7 +478,6 @@ export class TripleCheckBroker {
 
   /**
    * @description Update aggregated list of a service's dependencies (i.e. what a given service uses).
-   * @todo Enable reducing/removing services and updating dependencies
    */
   private updateDependencies(identity: Identity, dependencies: string[], currentDependencies: any) {
     const { name, version } = identity;
@@ -519,7 +508,6 @@ export class TripleCheckBroker {
 
   /**
    * @description Update aggregated list of a service's dependents (i.e. what services use a given service).
-   * @todo Enable reducing/removing services and updating dependents
    */
   private updateDependents(identity: Identity, dependencies: string[], currentDependents: any) {
     const { name, version } = identity;
@@ -581,10 +569,9 @@ export class TripleCheckBroker {
         console.log(`Sorry, could not find the service...`);
         return {};
       } else {
-        const data = {
+        return {
           [service]: result
         };
-        return data;
       }
     }
     // Get all

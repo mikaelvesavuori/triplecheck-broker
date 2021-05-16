@@ -4,6 +4,10 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker)
 
+[![CodeScene Code Health](https://codescene.io/projects/15675/status-badges/code-health)](https://codescene.io/projects/15675)
+
+[![CodeScene System Mastery](https://codescene.io/projects/15675/status-badges/system-mastery)](https://codescene.io/projects/15675)
+
 The TripleCheck broker allows you to do lightweight consumer contract testing.
 
 You need to run the broker with a (database) repository of your choice.

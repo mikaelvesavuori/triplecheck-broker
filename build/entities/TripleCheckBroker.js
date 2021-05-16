@@ -31,8 +31,7 @@ class TripleCheckBroker {
             if (!query)
                 return '';
             const [name, version] = query.split('@');
-            const key = calculateDbKey_1.calculateDbKey({ type: path, name, version });
-            return key;
+            return calculateDbKey_1.calculateDbKey({ type: path, name, version });
         })();
         if (method === 'GET') {
             if (query) {
@@ -50,7 +49,7 @@ class TripleCheckBroker {
                     responseData = await this.getTests();
                 else if (path === 'contracts')
                     responseData = await this.getContracts();
-                else if (path === 'services' && !query)
+                else if (path === 'services')
                     responseData = await this.getServices();
                 else if (path === 'dependencies' || path === 'dependents')
                     responseData = await this.getRelations(path);
@@ -196,10 +195,9 @@ class TripleCheckBroker {
             if (!fixedContracts[name][version])
                 fixedContracts[name][version] = contract[name][version];
         });
-        const cleaned = Object.entries(fixedContracts).map((item) => ({
+        return Object.entries(fixedContracts).map((item) => ({
             [item[0]]: item[1]
         }));
-        return cleaned;
     }
     async updateContracts(contracts) {
         const type = 'contract';
@@ -249,10 +247,9 @@ class TripleCheckBroker {
             if (!fixedTests[name][version])
                 fixedTests[name][version] = test[name][version];
         });
-        const cleaned = Object.entries(fixedTests).map((item) => ({
+        return Object.entries(fixedTests).map((item) => ({
             [item[0]]: item[1]
         }));
-        return cleaned;
     }
     async updateTests(tests) {
         const type = 'test';
@@ -279,10 +276,10 @@ class TripleCheckBroker {
             };
             addTests(existingData);
             addTests(newTests);
-            const cleanedTests = Object.entries(updatedTests).map((test) => {
-                const [name, testData] = test;
+            const cleanedTests = Object.entries(updatedTests).map((updatedTest) => {
+                const [testName, testData] = updatedTest;
                 return {
-                    [name]: testData
+                    [testName]: testData
                 };
             });
             testIds.push(`${name}@${version}`);
@@ -375,10 +372,9 @@ class TripleCheckBroker {
                 return {};
             }
             else {
-                const data = {
+                return {
                     [service]: result
                 };
-                return data;
             }
         }
         else {

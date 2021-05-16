@@ -6,7 +6,6 @@ import { Url } from '../contracts/Url';
 
 /**
  * @description Controller (orchestrator) for TripleCheck broker.
- * @todo Type the incoming Request object: { method, pathname, search }
  */
 export async function TripleCheckBrokerController(
   request: Url,
