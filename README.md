@@ -59,44 +59,39 @@ These are also available in Insomnia format in the repo.
 POST {{BROKER_URL}}/publish
 
 {
-  "identity": {
-    "name": "demo-provider",
-    "version": "1.0.0",
-    "endpoint": "http://localhost:8080/api"
-  },
-  "dependencies": [
-    "api-provider@1.3.0",
-    "api-provider@1.3.2",
-    "some-provider@0.0.1",
-    "asdf@5.2.1"
-  ],
-  "contracts": [
-    {
-      "demo-provider": {
-        "1.0.0": {
-          "name": "asdf"
-        }
-      }
-    }
-  ],
-  "tests": [
-    {
-      "demo-provider": {
-        "1.0.0": [
-          {
-            "demo": {
-              "asdf": "asdf"
-            }
-          },
-          {
-            "some-other-demo": {
-              "address": "Bubbletown"
-            }
-          }
-        ]
-      }
-    }
-  ]
+	"identity": {
+		"name": "user-api",
+		"version": "1.1.0"
+	},
+	"dependencies": [
+		"payments-service@1.3.0"
+	],
+	"contracts": [
+		{
+			"user-api": {
+				"1.1.0": {
+					"name": "Someone",
+					"address": "Some Street 123",
+					"age": 35
+				}
+			}
+		}
+	],
+	"tests": [
+		{
+			"user-api": {
+				"1.1.0": [
+					{
+						"Verify identity": {
+							"name": "Carmen",
+							"address": "Ocean View 3000",
+							"age": 27
+						}
+					}
+				]
+			}
+		}
+	]
 }
 ```
 
@@ -106,36 +101,37 @@ POST {{BROKER_URL}}/publish
 POST {{BROKER_URL}}/publish
 
 {
-  "identity": {
-    "name": "api-provider",
-    "version": "1.3.0",
-    "endpoint": "http://localhost:8080/api"
-  },
-  "dependencies": [
-    "demo-provider@1.0.0"
-  ],
-  "contracts": [
-    {
-      "api-provider": {
-        "1.3.0": {
-          "name": "string"
-        }
-      }
-    }
-  ],
-  "tests": [
-    {
-      "api-provider": {
-        "1.3.0": [
-          {
-            "A demo test": {
-              "name": "Joanna Dark"
-            }
-          }
-        ]
-      }
-    }
-  ]
+	"identity": {
+		"name": "payments-service",
+		"version": "1.3.0"
+	},
+	"dependencies": [],
+	"contracts": [
+		{
+			"payments-service": {
+				"1.3.0": {
+					"userId": "string",
+					"invoiceId": "string",
+					"paidInFull": false
+				}
+			}
+		}
+	],
+	"tests": [
+		{
+			"payments-service": {
+				"1.3.0": [
+					{
+						"User payment update": {
+							"userId": "823hc73nca",
+							"invoiceId": "828612-10273-eff",
+							"paidInFull": true
+						}
+					}
+				]
+			}
+		}
+	]
 }
 ```
 
@@ -150,7 +146,7 @@ GET {{BROKER_URL}}/services
 #### Get service
 
 ```
-GET {{BROKER_URL}}/services?demo-provider
+GET {{BROKER_URL}}/services?payments-service
 ```
 
 ### Relations
@@ -164,13 +160,13 @@ GET {{BROKER_URL}}/dependencies
 #### Get dependencies of given service
 
 ```
-GET {{BROKER_URL}}/dependencies?demo-provider
+GET {{BROKER_URL}}/dependencies?user-api
 ```
 
 #### Get dependencies of given service version
 
 ```
-GET {{BROKER_URL}}/dependencies?demo-provider@1.0.0
+GET {{BROKER_URL}}/dependencies?user-api@1.0.0
 ```
 
 #### Get dependents
@@ -182,13 +178,13 @@ GET {{BROKER_URL}}/dependents
 #### Get dependents of given service
 
 ```
-GET {{BROKER_URL}}/dependents?api-provider
+GET {{BROKER_URL}}/dependents?payments-service
 ```
 
 #### Get dependents of given service version
 
 ```
-GET {{BROKER_URL}}/dependents?api-provider@1.3.2
+GET {{BROKER_URL}}/dependents?payments-service@1.3.0
 ```
 
 ### Contracts
@@ -202,7 +198,7 @@ GET {{BROKER_URL}}/contracts
 #### Get contract
 
 ```
-GET {{BROKER_URL}}/contracts?demo-provider@1.0.0
+GET {{BROKER_URL}}/contracts?user-api@1.0.0
 ```
 
 #### Delete contract
@@ -211,7 +207,7 @@ GET {{BROKER_URL}}/contracts?demo-provider@1.0.0
 DELETE {{BROKER_URL}}/contracts
 
 {
-  "serviceName": "demo-provider",
+  "serviceName": "user-api",
   "version": "1.0.0"
 }
 ```
@@ -227,7 +223,7 @@ GET {{BROKER_URL}}/tests
 #### Get test
 
 ```
-GET {{BROKER_URL}}/?demo-provider@1.0.0
+GET {{BROKER_URL}}/tests?payments-service@1.3.0
 ```
 
 #### Delete tests for version of service
@@ -236,8 +232,8 @@ GET {{BROKER_URL}}/?demo-provider@1.0.0
 DELETE {{BROKER_URL}}/tests
 
 {
-  "serviceName": "demo-provider",
-  "version": "1.0.0"
+	"serviceName": "payment-service",
+	"version": "1.3.0"
 }
 ```
 
@@ -247,8 +243,8 @@ DELETE {{BROKER_URL}}/tests
 DELETE {{BROKER_URL}}/tests
 
 {
-  "serviceName": "demo-provider",
-  "version": "1.0.0",
-  "test": "demo"
+	"serviceName": "payments-service",
+	"version": "1.3.0",
+	"test": "User payment update"
 }
 ```
