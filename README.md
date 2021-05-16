@@ -2,6 +2,8 @@
 
 ## TripleCheck broker service
 
+![Build Status](https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker)
 
 [![CodeScene Code Health](https://codescene.io/projects/15675/status-badges/code-health)](https://codescene.io/projects/15675)
