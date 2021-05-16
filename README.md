@@ -2,6 +2,8 @@
 
 ## TripleCheck broker service
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker)
+
 The TripleCheck broker allows you to do lightweight consumer contract testing.
 
 You need to run the broker with a (database) repository of your choice.
