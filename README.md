@@ -1,8 +1,6 @@
 # triplecheck-broker
 
-## TripleCheck broker service
-
-![TripleCheck](readme/triplecheck.png)
+![TripleCheck](readme/triplecheck-broker.png)
 
 ![Build Status](https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg)
 
@@ -11,6 +9,8 @@
 [![CodeScene Code Health](https://codescene.io/projects/15675/status-badges/code-health)](https://codescene.io/projects/15675)
 
 [![CodeScene System Mastery](https://codescene.io/projects/15675/status-badges/system-mastery)](https://codescene.io/projects/15675)
+
+## TripleCheck broker — The easiest and fastest way to do contract testing.
 
 The TripleCheck broker is a central, global store for all of your contracts and contract tests. You need to run the broker with a [(database) repository of your choice](#available-database-repositories). There are also a number of [ready-made solutions](#quickstart-using-example-implementations) if you prefer Easy Street.
 
