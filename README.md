@@ -2,6 +2,8 @@
 
 ## TripleCheck broker service
 
+![TripleCheck](readme/triplecheck.png)
+
 ![Build Status](https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker)
@@ -10,13 +12,9 @@
 
 [![CodeScene System Mastery](https://codescene.io/projects/15675/status-badges/system-mastery)](https://codescene.io/projects/15675)
 
-The TripleCheck broker allows you to do lightweight consumer contract testing.
+The TripleCheck broker is a central, global store for all of your contracts and contract tests. You need to run the broker with a [(database) repository of your choice](#available-database-repositories). There are also a number of [ready-made solutions](#quickstart-using-example-implementations) if you prefer Easy Street.
 
-You need to run the broker with a (database) repository of your choice.
-
-## Instructions
-
-Coming.
+The [triplecheck-cli](https://github.com/mikaelvesavuori/triplecheck-cli) will abstract the use of the broker so you can kick back and relax. You can use the broker without the CLI, though its usefulness is not nearly as interesting without it. Conversely, there are probably some interesting things you can do with the broker being "open" like any other API.
 
 ## Quickstart using example implementations
 
@@ -43,6 +41,10 @@ So, actually downloading a TripleCheck example would therefore look like:
 npx degit mikaelvesavuori/triplecheck-example-cloudrun my-cloudrun-broker
 ```
 
+## How do I get started setting up my own broker from scratch?
+
+TODO.
+
 ## Available database repositories
 
 The broker requires a "repository", i.e. a piece of code that will drive the database.
@@ -63,7 +65,7 @@ These are also available in Insomnia format in the repo.
 
 #### Publish #1
 
-```
+```json
 POST {{BROKER_URL}}/publish
 
 {
@@ -105,7 +107,7 @@ POST {{BROKER_URL}}/publish
 
 #### Publish #2
 
-```
+```json
 POST {{BROKER_URL}}/publish
 
 {
@@ -211,7 +213,7 @@ GET {{BROKER_URL}}/contracts?user-api@1.0.0
 
 #### Delete contract
 
-```
+```json
 DELETE {{BROKER_URL}}/contracts
 
 {
@@ -236,7 +238,7 @@ GET {{BROKER_URL}}/tests?payments-service@1.3.0
 
 #### Delete tests for version of service
 
-```
+```json
 DELETE {{BROKER_URL}}/tests
 
 {
@@ -247,7 +249,7 @@ DELETE {{BROKER_URL}}/tests
 
 #### Delete test
 
-```
+```json
 DELETE {{BROKER_URL}}/tests
 
 {

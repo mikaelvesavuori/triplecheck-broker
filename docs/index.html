@@ -64,16 +64,13 @@
 				<a href="#triplecheck-broker-service" id="triplecheck-broker-service" style="color: inherit; text-decoration: none;">
 					<h2>TripleCheck broker service</h2>
 				</a>
+				<p><img src="readme/triplecheck.png" alt="TripleCheck"></p>
 				<p><img src="https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg" alt="Build Status"></p>
 				<p><a href="https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker"><img src="https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status" alt="Quality Gate Status"></a></p>
 				<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/code-health" alt="CodeScene Code Health"></a></p>
 				<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/system-mastery" alt="CodeScene System Mastery"></a></p>
-				<p>The TripleCheck broker allows you to do lightweight consumer contract testing.</p>
-				<p>You need to run the broker with a (database) repository of your choice.</p>
-				<a href="#instructions" id="instructions" style="color: inherit; text-decoration: none;">
-					<h2>Instructions</h2>
-				</a>
-				<p>Coming.</p>
+				<p>The TripleCheck broker is a central, global store for all of your contracts and contract tests. You need to run the broker with a <a href="#available-database-repositories">(database) repository of your choice</a>. There are also a number of <a href="#quickstart-using-example-implementations">ready-made solutions</a> if you prefer Easy Street.</p>
+				<p>The <a href="https://github.com/mikaelvesavuori/triplecheck-cli">triplecheck-cli</a> will abstract the use of the broker so you can kick back and relax. You can use the broker without the CLI, though its usefulness is not nearly as interesting without it. Conversely, there are probably some interesting things you can do with the broker being &quot;open&quot; like any other API.</p>
 				<a href="#quickstart-using-example-implementations" id="quickstart-using-example-implementations" style="color: inherit; text-decoration: none;">
 					<h2>Quickstart using example implementations</h2>
 				</a>
@@ -93,6 +90,10 @@
 				<p>So, actually downloading a TripleCheck example would therefore look like:</p>
 				<pre><code><span style="color: #001080">npx</span><span style="color: #000000"> </span><span style="color: #001080">degit</span><span style="color: #000000"> </span><span style="color: #001080">mikaelvesavuori</span><span style="color: #000000">/</span><span style="color: #001080">triplecheck</span><span style="color: #000000">-</span><span style="color: #001080">example</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000"> </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000">-</span><span style="color: #001080">broker</span>
 </code></pre>
+				<a href="#how-do-i-get-started-setting-up-my-own-broker-from-scratch" id="how-do-i-get-started-setting-up-my-own-broker-from-scratch" style="color: inherit; text-decoration: none;">
+					<h2>How do I get started setting up my own broker from scratch?</h2>
+				</a>
+				<p>TODO.</p>
 				<a href="#available-database-repositories" id="available-database-repositories" style="color: inherit; text-decoration: none;">
 					<h2>Available database repositories</h2>
 				</a>
@@ -115,36 +116,36 @@
 				<a href="#publish-1" id="publish-1" style="color: inherit; text-decoration: none;">
 					<h4>Publish #1</h4>
 				</a>
-				<pre><code><span style="color: #0070C1">POST</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">publish</span>
+				<pre><code class="language-json"><span style="color: #000000">POST {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/publish</span>
 
 <span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;identity&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;name&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;version&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;1.1.0&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;identity&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.1.0&quot;</span>
 <span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;dependencies&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;dependencies&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    </span><span style="color: #A31515">&quot;payments-service@1.3.0&quot;</span>
 <span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #A31515">&quot;1.1.0&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;name&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Someone&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;address&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Some Street 123&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;age&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">35</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">&quot;user-api&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.1.0&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Someone&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;address&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Some Street 123&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;age&quot;</span><span style="color: #000000">: </span><span style="color: #098658">35</span>
 <span style="color: #000000">        }</span>
 <span style="color: #000000">      }</span>
 <span style="color: #000000">    }</span>
 <span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tests&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tests&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #A31515">&quot;1.1.0&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">&quot;user-api&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.1.0&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">          {</span>
-<span style="color: #000000">            </span><span style="color: #A31515">&quot;Verify identity&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;name&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Carmen&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;address&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Ocean View 3000&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;age&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">27</span>
+<span style="color: #000000">            </span><span style="color: #0451A5">&quot;Verify identity&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Carmen&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;address&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Ocean View 3000&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;age&quot;</span><span style="color: #000000">: </span><span style="color: #098658">27</span>
 <span style="color: #000000">            }</span>
 <span style="color: #000000">          }</span>
 <span style="color: #000000">        ]</span>
@@ -156,34 +157,34 @@
 				<a href="#publish-2" id="publish-2" style="color: inherit; text-decoration: none;">
 					<h4>Publish #2</h4>
 				</a>
-				<pre><code><span style="color: #0070C1">POST</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">publish</span>
+				<pre><code class="language-json"><span style="color: #000000">POST {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/publish</span>
 
 <span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;identity&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;name&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;version&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;identity&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
 <span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;dependencies&quot;</span><span style="color: #000000">: [],</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;dependencies&quot;</span><span style="color: #000000">: [],</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #A31515">&quot;1.3.0&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;userId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;invoiceId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #A31515">&quot;paidInFull&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">&quot;payments-service&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.3.0&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;userId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;invoiceId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;paidInFull&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span>
 <span style="color: #000000">        }</span>
 <span style="color: #000000">      }</span>
 <span style="color: #000000">    }</span>
 <span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tests&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tests&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #A31515">&quot;1.3.0&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">&quot;payments-service&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.3.0&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">          {</span>
-<span style="color: #000000">            </span><span style="color: #A31515">&quot;User payment update&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;userId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;823hc73nca&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;invoiceId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;828612-10273-eff&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #A31515">&quot;paidInFull&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">            </span><span style="color: #0451A5">&quot;User payment update&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;userId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;823hc73nca&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;invoiceId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;828612-10273-eff&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">              </span><span style="color: #0451A5">&quot;paidInFull&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
 <span style="color: #000000">            }</span>
 <span style="color: #000000">          }</span>
 <span style="color: #000000">        ]</span>
@@ -254,11 +255,11 @@
 				<a href="#delete-contract" id="delete-contract" style="color: inherit; text-decoration: none;">
 					<h4>Delete contract</h4>
 				</a>
-				<pre><code><span style="color: #0070C1">DELETE</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">contracts</span>
+				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/contracts</span>
 
 <span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.0.0&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.0.0&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
@@ -277,22 +278,22 @@
 				<a href="#delete-tests-for-version-of-service" id="delete-tests-for-version-of-service" style="color: inherit; text-decoration: none;">
 					<h4>Delete tests for version of service</h4>
 				</a>
-				<pre><code><span style="color: #0070C1">DELETE</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">tests</span>
+				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/tests</span>
 
 <span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payment-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payment-service&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<a href="#delete-test" id="delete-test" style="color: inherit; text-decoration: none;">
 					<h4>Delete test</h4>
 				</a>
-				<pre><code><span style="color: #0070C1">DELETE</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">tests</span>
+				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/tests</span>
 
 <span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;test&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;User payment update&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;test&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;User payment update&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 			</div>

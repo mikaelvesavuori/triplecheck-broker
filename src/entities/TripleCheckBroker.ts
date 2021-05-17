@@ -8,11 +8,18 @@ import { Url } from '../contracts/Url';
 
 import { calculateDbKey } from '../frameworks/calculateDbKey';
 import {
+  msgFinishedGettingData,
+  msgFinishedPuttingData,
+  msgFinishedDeletingData,
+  msgFinishedDeletingTest,
+  msgFinishedUpdatingTests,
+  msgFinishedDeletingContract,
+  msgUnknownService,
+  warnUpdateContractsMissingRequiredVariables,
+  warnUpdateTestsMissingRequiredVariables,
   errorRouterMissingParams,
   errorGetDataMissingKey,
-  errorUpdateDataMissingData,
-  warnUpdateContractsMissingRequiredVariables,
-  warnUpdateTestsMissingRequiredVariables
+  errorUpdateDataMissingData
 } from '../frameworks/messages';
 
 export const createNewBroker = (repository: Repository): TripleCheckBroker => {
@@ -118,7 +125,7 @@ export class TripleCheckBroker {
     if ((!data && key === 'dependencies') || (!data && key === 'dependents')) data = {};
     // Fallback: Any other nulls should be an empty array
     else if (!data) data = [];
-    console.log(`Finished getting data from key "${key}"`);
+    console.log(msgFinishedGettingData(key));
     return data;
   }
 
@@ -129,7 +136,7 @@ export class TripleCheckBroker {
     if (!key || !data) return this.handleError(errorUpdateDataMissingData);
 
     await this.repository.updateData(key, data);
-    console.log(`Finished putting new data`);
+    console.log(msgFinishedPuttingData);
     return data;
   }
 
@@ -138,7 +145,7 @@ export class TripleCheckBroker {
    */
   private async deleteData(key: string): Promise<void> {
     await this.repository.deleteData(key);
-    console.log(`Finished deleting data`);
+    console.log(msgFinishedDeletingData);
   }
 
   //////////////////////
@@ -185,10 +192,10 @@ export class TripleCheckBroker {
 
       // Delete the actual record if empty
       await this.deleteData(key);
-      console.log(`Finished deleting test`);
+      console.log(msgFinishedDeletingTest(key));
     } else {
       await this.updateData(key, updatedTests);
-      console.log(`Finished updating tests`);
+      console.log(msgFinishedUpdatingTests);
     }
   }
 
@@ -221,7 +228,7 @@ export class TripleCheckBroker {
     });
     await this.deleteData(key);
 
-    console.log(`Finished deleting contract: "${key}"`);
+    console.log(msgFinishedDeletingContract(key));
   }
 
   /**
@@ -566,7 +573,7 @@ export class TripleCheckBroker {
       result = result.filter((item: any) => item);
 
       if (!result || result.length === 0) {
-        console.log(`Sorry, could not find the service...`);
+        console.log(msgUnknownService);
         return {};
       } else {
         return {

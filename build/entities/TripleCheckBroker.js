@@ -85,19 +85,19 @@ class TripleCheckBroker {
             data = {};
         else if (!data)
             data = [];
-        console.log(`Finished getting data from key "${key}"`);
+        console.log(messages_1.msgFinishedGettingData(key));
         return data;
     }
     async updateData(key, data) {
         if (!key || !data)
             return this.handleError(messages_1.errorUpdateDataMissingData);
         await this.repository.updateData(key, data);
-        console.log(`Finished putting new data`);
+        console.log(messages_1.msgFinishedPuttingData);
         return data;
     }
     async deleteData(key) {
         await this.repository.deleteData(key);
-        console.log(`Finished deleting data`);
+        console.log(messages_1.msgFinishedDeletingData);
     }
     async deleteTest(serviceName, serviceVersion, testName) {
         if (!serviceName)
@@ -126,11 +126,11 @@ class TripleCheckBroker {
             const filteredData = listData.filter((item) => item !== `${serviceName}@${serviceVersion}`);
             await this.updateData(listType, filteredData);
             await this.deleteData(key);
-            console.log(`Finished deleting test`);
+            console.log(messages_1.msgFinishedDeletingTest(key));
         }
         else {
             await this.updateData(key, updatedTests);
-            console.log(`Finished updating tests`);
+            console.log(messages_1.msgFinishedUpdatingTests);
         }
     }
     async deleteContract(serviceName, version) {
@@ -151,7 +151,7 @@ class TripleCheckBroker {
             version
         });
         await this.deleteData(key);
-        console.log(`Finished deleting contract: "${key}"`);
+        console.log(messages_1.msgFinishedDeletingContract(key));
     }
     async updateList(listName, services, removeServices = false) {
         const currentList = await this.getData(listName);
@@ -368,7 +368,7 @@ class TripleCheckBroker {
             });
             result = result.filter((item) => item);
             if (!result || result.length === 0) {
-                console.log(`Sorry, could not find the service...`);
+                console.log(messages_1.msgUnknownService);
                 return {};
             }
             else {
