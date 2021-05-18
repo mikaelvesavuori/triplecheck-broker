@@ -63,8 +63,6 @@ Some databases require environmental context (variables etc.) and/or keyfiles or
 
 ## Example requests
 
-These are also available in Insomnia format in the repo.
-
 ### Publish
 
 #### Publish #1
