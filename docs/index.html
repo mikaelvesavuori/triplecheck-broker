@@ -90,10 +90,6 @@
 				<p>So, actually downloading a TripleCheck example would therefore look like:</p>
 				<pre><code><span style="color: #001080">npx</span><span style="color: #000000"> </span><span style="color: #001080">degit</span><span style="color: #000000"> </span><span style="color: #001080">mikaelvesavuori</span><span style="color: #000000">/</span><span style="color: #001080">triplecheck</span><span style="color: #000000">-</span><span style="color: #001080">example</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000"> </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000">-</span><span style="color: #001080">broker</span>
 </code></pre>
-				<a href="#how-do-i-get-started-setting-up-my-own-broker-from-scratch" id="how-do-i-get-started-setting-up-my-own-broker-from-scratch" style="color: inherit; text-decoration: none;">
-					<h2>How do I get started setting up my own broker from scratch?</h2>
-				</a>
-				<p>TODO.</p>
 				<a href="#available-database-repositories" id="available-database-repositories" style="color: inherit; text-decoration: none;">
 					<h2>Available database repositories</h2>
 				</a>
@@ -106,6 +102,12 @@
 					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-dynamodb">AWS DynamoDB</a></li>
 					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-fauna">FaunaDB</a></li>
 				</ul>
+				<a href="#how-do-i-get-started-setting-up-my-own-broker-from-scratch" id="how-do-i-get-started-setting-up-my-own-broker-from-scratch" style="color: inherit; text-decoration: none;">
+					<h2>How do I get started setting up my own broker from scratch?</h2>
+				</a>
+				<p>It&#39;s pretty easy and do feel free to look at some of the examples for practical references.</p>
+				<p>The general gist is that you will need to import the broker, a repository of your choice (see above), and then run the broker with the repository as one of its arguments. The other arguments are <code>request</code> and <code>payload</code>: <code>request</code> being a slightly processed request object (implementation depends on your compute/API context—see the implementations for how they behave) and the <code>payload</code> is simply a parsed JSON object of any request body you may have.</p>
+				<p>Some databases require environmental context (variables etc.) and/or keyfiles or explicit configuration objects. Look at the respective repository&#39;s documentation to learn what is expected.</p>
 				<a href="#example-requests" id="example-requests" style="color: inherit; text-decoration: none;">
 					<h2>Example requests</h2>
 				</a>

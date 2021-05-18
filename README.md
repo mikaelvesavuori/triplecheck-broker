@@ -41,10 +41,6 @@ So, actually downloading a TripleCheck example would therefore look like:
 npx degit mikaelvesavuori/triplecheck-example-cloudrun my-cloudrun-broker
 ```
 
-## How do I get started setting up my own broker from scratch?
-
-TODO.
-
 ## Available database repositories
 
 The broker requires a "repository", i.e. a piece of code that will drive the database.
@@ -56,6 +52,14 @@ Examples above already use some of these. If you're keen on writing your own bro
 - [Cloudflare KV](https://github.com/mikaelvesavuori/triplecheck-repository-cloudflarekv)
 - [AWS DynamoDB](https://github.com/mikaelvesavuori/triplecheck-repository-dynamodb)
 - [FaunaDB](https://github.com/mikaelvesavuori/triplecheck-repository-fauna)
+
+## How do I get started setting up my own broker from scratch?
+
+It's pretty easy and do feel free to look at some of the examples for practical references.
+
+The general gist is that you will need to import the broker, a repository of your choice (see above), and then run the broker with the repository as one of its arguments. The other arguments are `request` and `payload`: `request` being a slightly processed request object (implementation depends on your compute/API context—see the implementations for how they behave) and the `payload` is simply a parsed JSON object of any request body you may have.
+
+Some databases require environmental context (variables etc.) and/or keyfiles or explicit configuration objects. Look at the respective repository's documentation to learn what is expected.
 
 ## Example requests
 

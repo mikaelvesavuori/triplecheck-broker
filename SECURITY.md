@@ -7,7 +7,6 @@ These versions of `triplecheck-broker` are currently being supported with securi
 | Version | Supported |
 | ------- | --------- |
 | 1.x.x   | :x:       |
-| 0.x.x   | :x:       |
 
 ## Reporting a Vulnerability
 
