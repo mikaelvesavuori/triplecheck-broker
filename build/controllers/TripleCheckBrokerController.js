@@ -4,7 +4,7 @@ exports.TripleCheckBrokerController = void 0;
 const TripleCheckBroker_1 = require("../entities/TripleCheckBroker");
 async function TripleCheckBrokerController(request, body, repository) {
     try {
-        const broker = TripleCheckBroker_1.createNewBroker(repository);
+        const broker = (0, TripleCheckBroker_1.createNewBroker)(repository);
         const { responseData, status } = await broker.router(request, body);
         const headers = {};
         return { responseData, status, headers };

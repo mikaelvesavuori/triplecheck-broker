@@ -8,6 +8,7 @@ const createNewBroker = (repository) => {
 };
 exports.createNewBroker = createNewBroker;
 class TripleCheckBroker {
+    repository;
     constructor(repository) {
         this.repository = repository;
     }
@@ -31,7 +32,7 @@ class TripleCheckBroker {
             if (!query)
                 return '';
             const [name, version] = query.split('@');
-            return calculateDbKey_1.calculateDbKey({ type: path, name, version });
+            return (0, calculateDbKey_1.calculateDbKey)({ type: path, name, version });
         })();
         if (method === 'GET') {
             if (query) {
@@ -85,7 +86,7 @@ class TripleCheckBroker {
             data = {};
         else if (!data)
             data = [];
-        console.log(messages_1.msgFinishedGettingData(key));
+        console.log((0, messages_1.msgFinishedGettingData)(key));
         return data;
     }
     async updateData(key, data) {
@@ -102,7 +103,7 @@ class TripleCheckBroker {
     async deleteTest(serviceName, serviceVersion, testName) {
         if (!serviceName)
             throw new Error("Missing 'serviceName' in deleteData()!");
-        const key = calculateDbKey_1.calculateDbKey({
+        const key = (0, calculateDbKey_1.calculateDbKey)({
             type: 'test',
             name: serviceName,
             version: serviceVersion
@@ -126,7 +127,7 @@ class TripleCheckBroker {
             const filteredData = listData.filter((item) => item !== `${serviceName}@${serviceVersion}`);
             await this.updateData(listType, filteredData);
             await this.deleteData(key);
-            console.log(messages_1.msgFinishedDeletingTest(key));
+            console.log((0, messages_1.msgFinishedDeletingTest)(key));
         }
         else {
             await this.updateData(key, updatedTests);
@@ -145,13 +146,13 @@ class TripleCheckBroker {
         await this.updateData(listType, filteredData);
         await this.updateList('services', [serviceId], true);
         await this.deleteTest(serviceName, version);
-        const key = calculateDbKey_1.calculateDbKey({
+        const key = (0, calculateDbKey_1.calculateDbKey)({
             type: 'contract',
             name: serviceName,
             version
         });
         await this.deleteData(key);
-        console.log(messages_1.msgFinishedDeletingContract(key));
+        console.log((0, messages_1.msgFinishedDeletingContract)(key));
     }
     async updateList(listName, services, removeServices = false) {
         const currentList = await this.getData(listName);
@@ -176,7 +177,7 @@ class TripleCheckBroker {
             if (serviceId && service !== serviceId)
                 return;
             const [name, version] = service.split('@');
-            const key = calculateDbKey_1.calculateDbKey({ type: 'contract', name, version });
+            const key = (0, calculateDbKey_1.calculateDbKey)({ type: 'contract', name, version });
             const data = await this.getData(key);
             return {
                 [name]: {
@@ -214,7 +215,7 @@ class TripleCheckBroker {
                 return;
             }
             contractIds.push(`${name}@${version}`);
-            const key = calculateDbKey_1.calculateDbKey({ type, name, version });
+            const key = (0, calculateDbKey_1.calculateDbKey)({ type, name, version });
             await this.updateData(key, data);
         });
         await Promise.all(contractPromises);
@@ -228,7 +229,7 @@ class TripleCheckBroker {
             if (serviceId && service !== serviceId)
                 return;
             const [name, version] = service.split('@');
-            const key = calculateDbKey_1.calculateDbKey({ type: 'test', name, version });
+            const key = (0, calculateDbKey_1.calculateDbKey)({ type: 'test', name, version });
             const data = await this.getData(key);
             return {
                 [name]: {
@@ -262,7 +263,7 @@ class TripleCheckBroker {
                 console.log(`---> type: ${type}, name: ${name}, version: ${version}`);
                 return;
             }
-            const key = calculateDbKey_1.calculateDbKey({ type, name, version });
+            const key = (0, calculateDbKey_1.calculateDbKey)({ type, name, version });
             const updatedTests = {};
             const existingData = (await this.getData(key)) || [];
             const newTests = test[name][version];

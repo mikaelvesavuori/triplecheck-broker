@@ -18,7 +18,7 @@ export async function TripleCheckBrokerController(
     const headers = {};
 
     return { responseData, status, headers };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     return { responseData: error.message, status: 500 };
   }
