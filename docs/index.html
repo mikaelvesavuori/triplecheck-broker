@@ -1,377 +1,182 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>triplecheck-broker</title>
-	<meta name="description" content="Documentation for triplecheck-broker">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">triplecheck-broker</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>triplecheck-broker</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#triplecheck-broker" id="triplecheck-broker" style="color: inherit; text-decoration: none;">
-					<h1>triplecheck-broker</h1>
-				</a>
-				<p><img src="readme/triplecheck-broker.png" alt="TripleCheck"></p>
-				<p><img src="https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg" alt="Build Status"></p>
-				<p><a href="https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker"><img src="https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status" alt="Quality Gate Status"></a></p>
-				<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/code-health" alt="CodeScene Code Health"></a></p>
-				<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/system-mastery" alt="CodeScene System Mastery"></a></p>
-				<a href="#triplecheck-broker--the-easiest-and-fastest-way-to-do-contract-testing" id="triplecheck-broker--the-easiest-and-fastest-way-to-do-contract-testing" style="color: inherit; text-decoration: none;">
-					<h2>TripleCheck broker — The easiest and fastest way to do contract testing.</h2>
-				</a>
-				<p>The TripleCheck broker is a central, global store for all of your contracts and contract tests. You need to run the broker with a <a href="#available-database-repositories">(database) repository of your choice</a>. There are also a number of <a href="#quickstart-using-example-implementations">ready-made solutions</a> if you prefer Easy Street.</p>
-				<p>The <a href="https://github.com/mikaelvesavuori/triplecheck-cli">triplecheck-cli</a> will abstract the use of the broker so you can kick back and relax. You can use the broker without the CLI, though its usefulness is not nearly as interesting without it. Conversely, there are probably some interesting things you can do with the broker being &quot;open&quot; like any other API.</p>
-				<a href="#quickstart-using-example-implementations" id="quickstart-using-example-implementations" style="color: inherit; text-decoration: none;">
-					<h2>Quickstart using example implementations</h2>
-				</a>
-				<p>There are several implementations that you can use ready-to-go or as your own starter kit. The current list is:</p>
-				<ul>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloudrun">Google Cloud Run and Firestore</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloud-functions">Google Cloud Functions and Firestore</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloudflare-workers">Cloudflare Workers and KV</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-lambda">AWS Lambda with DynamoDB</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-vercel">Vercel with FaunaDB</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-netlify">Netlify with FaunaDB</a></li>
-				</ul>
-				<p>Examples for Azure Container Instances and Azure Functions are being produced but got delayed and botched because of typical Microsoft issues, so that&#39;s why they are not in the first block of examples.</p>
-				<p>The easiest way to get going with starter code is by using <a href="https://github.com/Rich-Harris/degit">degit</a>. degit makes it very convenient to pull a shallow clone from Git without all the history and other garbage you get when cloning repose. The format is:</p>
-				<pre><code><span style="color: #001080">npx</span><span style="color: #000000"> </span><span style="color: #001080">degit</span><span style="color: #000000"> {</span><span style="color: #001080">github</span><span style="color: #000000">-</span><span style="color: #001080">user</span><span style="color: #000000">}/{</span><span style="color: #001080">github</span><span style="color: #000000">-</span><span style="color: #001080">repo</span><span style="color: #000000">} {</span><span style="color: #001080">your</span><span style="color: #000000">-</span><span style="color: #001080">folder</span><span style="color: #000000">}</span>
-</code></pre>
-				<p>So, actually downloading a TripleCheck example would therefore look like:</p>
-				<pre><code><span style="color: #001080">npx</span><span style="color: #000000"> </span><span style="color: #001080">degit</span><span style="color: #000000"> </span><span style="color: #001080">mikaelvesavuori</span><span style="color: #000000">/</span><span style="color: #001080">triplecheck</span><span style="color: #000000">-</span><span style="color: #001080">example</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000"> </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">cloudrun</span><span style="color: #000000">-</span><span style="color: #001080">broker</span>
-</code></pre>
-				<a href="#available-database-repositories" id="available-database-repositories" style="color: inherit; text-decoration: none;">
-					<h2>Available database repositories</h2>
-				</a>
-				<p>The broker requires a &quot;repository&quot;, i.e. a piece of code that will drive the database.</p>
-				<p>Examples above already use some of these. If you&#39;re keen on writing your own broker implementation, you might want to use one of the available repositories:</p>
-				<ul>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-cosmosdb-sql">Azure CosmosDB SQL</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-firestore">Google Firestore</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-cloudflarekv">Cloudflare KV</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-dynamodb">AWS DynamoDB</a></li>
-					<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-fauna">FaunaDB</a></li>
-				</ul>
-				<a href="#how-do-i-get-started-setting-up-my-own-broker-from-scratch" id="how-do-i-get-started-setting-up-my-own-broker-from-scratch" style="color: inherit; text-decoration: none;">
-					<h2>How do I get started setting up my own broker from scratch?</h2>
-				</a>
-				<p>It&#39;s pretty easy and do feel free to look at some of the examples for practical references.</p>
-				<p>The general gist is that you will need to import the broker, a repository of your choice (see above), and then run the broker with the repository as one of its arguments. The other arguments are <code>request</code> and <code>payload</code>: <code>request</code> being a slightly processed request object (implementation depends on your compute/API context—see the implementations for how they behave) and the <code>payload</code> is simply a parsed JSON object of any request body you may have.</p>
-				<p>Some databases require environmental context (variables etc.) and/or keyfiles or explicit configuration objects. Look at the respective repository&#39;s documentation to learn what is expected.</p>
-				<a href="#example-requests" id="example-requests" style="color: inherit; text-decoration: none;">
-					<h2>Example requests</h2>
-				</a>
-				<a href="#publish" id="publish" style="color: inherit; text-decoration: none;">
-					<h3>Publish</h3>
-				</a>
-				<a href="#publish-1" id="publish-1" style="color: inherit; text-decoration: none;">
-					<h4>Publish #1</h4>
-				</a>
-				<pre><code class="language-json"><span style="color: #000000">POST {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/publish</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>triplecheck-broker</title><meta name="description" content="Documentation for triplecheck-broker"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">triplecheck-broker</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>triplecheck-broker </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#triplecheck-broker" id="triplecheck-broker" style="color: inherit; text-decoration: none;">
+  <h1>triplecheck-broker</h1>
+</a>
+<p><img src="readme/triplecheck-broker.png" alt="TripleCheck"></p>
+<p><img src="https://github.com/mikaelvesavuori/triplecheck-broker/workflows/main/badge.svg" alt="Build Status"></p>
+<p><a href="https://sonarcloud.io/dashboard?id=mikaelvesavuori_triplecheck-broker"><img src="https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_triplecheck-broker&metric=alert_status" alt="Quality Gate Status"></a></p>
+<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/code-health" alt="CodeScene Code Health"></a></p>
+<p><a href="https://codescene.io/projects/15675"><img src="https://codescene.io/projects/15675/status-badges/system-mastery" alt="CodeScene System Mastery"></a></p>
 
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;identity&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.1.0&quot;</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;dependencies&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;payments-service@1.3.0&quot;</span>
-<span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #0451A5">&quot;user-api&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.1.0&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Someone&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;address&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Some Street 123&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;age&quot;</span><span style="color: #000000">: </span><span style="color: #098658">35</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">      }</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tests&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #0451A5">&quot;user-api&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.1.0&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">          {</span>
-<span style="color: #000000">            </span><span style="color: #0451A5">&quot;Verify identity&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Carmen&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;address&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Ocean View 3000&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;age&quot;</span><span style="color: #000000">: </span><span style="color: #098658">27</span>
-<span style="color: #000000">            }</span>
-<span style="color: #000000">          }</span>
-<span style="color: #000000">        ]</span>
-<span style="color: #000000">      }</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  ]</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<a href="#publish-2" id="publish-2" style="color: inherit; text-decoration: none;">
-					<h4>Publish #2</h4>
-				</a>
-				<pre><code class="language-json"><span style="color: #000000">POST {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/publish</span>
+<a href="#triplecheck-broker--the-easiest-and-fastest-way-to-do-contract-testing" id="triplecheck-broker--the-easiest-and-fastest-way-to-do-contract-testing" style="color: inherit; text-decoration: none;">
+  <h2>TripleCheck broker — The easiest and fastest way to do contract testing.</h2>
+</a>
+<p>The TripleCheck broker is a central, global store for all of your contracts and contract tests. You need to run the broker with a <a href="#available-database-repositories">(database) repository of your choice</a>. There are also a number of <a href="#quickstart-using-example-implementations">ready-made solutions</a> if you prefer Easy Street.</p>
+<p>The <a href="https://github.com/mikaelvesavuori/triplecheck-cli">triplecheck-cli</a> will abstract the use of the broker so you can kick back and relax. You can use the broker without the CLI, though its usefulness is not nearly as interesting without it. Conversely, there are probably some interesting things you can do with the broker being &quot;open&quot; like any other API.</p>
 
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;identity&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;name&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;dependencies&quot;</span><span style="color: #000000">: [],</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;contracts&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #0451A5">&quot;payments-service&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.3.0&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;userId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;invoiceId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;paidInFull&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">      }</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  ],</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tests&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    {</span>
-<span style="color: #000000">      </span><span style="color: #0451A5">&quot;payments-service&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">        </span><span style="color: #0451A5">&quot;1.3.0&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">          {</span>
-<span style="color: #000000">            </span><span style="color: #0451A5">&quot;User payment update&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;userId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;823hc73nca&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;invoiceId&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;828612-10273-eff&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">              </span><span style="color: #0451A5">&quot;paidInFull&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">            }</span>
-<span style="color: #000000">          }</span>
-<span style="color: #000000">        ]</span>
-<span style="color: #000000">      }</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">  ]</span>
-<span style="color: #000000">}</span>
+<a href="#quickstart-using-example-implementations" id="quickstart-using-example-implementations" style="color: inherit; text-decoration: none;">
+  <h2>Quickstart using example implementations</h2>
+</a>
+<p>There are several implementations that you can use ready-to-go or as your own starter kit. The current list is:</p>
+<ul>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloudrun">Google Cloud Run and Firestore</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloud-functions">Google Cloud Functions and Firestore</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-cloudflare-workers">Cloudflare Workers and KV</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-lambda">AWS Lambda with DynamoDB</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-vercel">Vercel with FaunaDB</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-example-netlify">Netlify with FaunaDB</a></li>
+</ul>
+<p>Examples for Azure Container Instances and Azure Functions are being produced but got delayed and botched because of typical Microsoft issues, so that&#39;s why they are not in the first block of examples.</p>
+<p>The easiest way to get going with starter code is by using <a href="https://github.com/Rich-Harris/degit">degit</a>. degit makes it very convenient to pull a shallow clone from Git without all the history and other garbage you get when cloning repose. The format is:</p>
+<pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">degit</span><span class="hl-1"> {</span><span class="hl-0">github</span><span class="hl-1">-</span><span class="hl-0">user</span><span class="hl-1">}/{</span><span class="hl-0">github</span><span class="hl-1">-</span><span class="hl-0">repo</span><span class="hl-1">} {</span><span class="hl-0">your</span><span class="hl-1">-</span><span class="hl-0">folder</span><span class="hl-1">}</span>
 </code></pre>
-				<a href="#services" id="services" style="color: inherit; text-decoration: none;">
-					<h3>Services</h3>
-				</a>
-				<a href="#get-services" id="get-services" style="color: inherit; text-decoration: none;">
-					<h4>Get services</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">services</span>
+<p>So, actually downloading a TripleCheck example would therefore look like:</p>
+<pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">degit</span><span class="hl-1"> </span><span class="hl-0">mikaelvesavuori</span><span class="hl-1">/</span><span class="hl-0">triplecheck</span><span class="hl-1">-</span><span class="hl-0">example</span><span class="hl-1">-</span><span class="hl-0">cloudrun</span><span class="hl-1"> </span><span class="hl-0">my</span><span class="hl-1">-</span><span class="hl-0">cloudrun</span><span class="hl-1">-</span><span class="hl-0">broker</span>
 </code></pre>
-				<a href="#get-service" id="get-service" style="color: inherit; text-decoration: none;">
-					<h4>Get service</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">services</span><span style="color: #000000">?</span><span style="color: #001080">payments</span><span style="color: #000000">-</span><span style="color: #001080">service</span>
-</code></pre>
-				<a href="#relations" id="relations" style="color: inherit; text-decoration: none;">
-					<h3>Relations</h3>
-				</a>
-				<a href="#get-dependencies" id="get-dependencies" style="color: inherit; text-decoration: none;">
-					<h4>Get dependencies</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependencies</span>
-</code></pre>
-				<a href="#get-dependencies-of-given-service" id="get-dependencies-of-given-service" style="color: inherit; text-decoration: none;">
-					<h4>Get dependencies of given service</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependencies</span><span style="color: #000000">?</span><span style="color: #001080">user</span><span style="color: #000000">-</span><span style="color: #001080">api</span>
-</code></pre>
-				<a href="#get-dependencies-of-given-service-version" id="get-dependencies-of-given-service-version" style="color: inherit; text-decoration: none;">
-					<h4>Get dependencies of given service version</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependencies</span><span style="color: #000000">?</span><span style="color: #001080">user</span><span style="color: #000000">-</span><span style="color: #001080">api</span><span style="color: #000000">@</span><span style="color: #098658">1.0</span><span style="color: #000000">.</span><span style="color: #098658">0</span>
-</code></pre>
-				<a href="#get-dependents" id="get-dependents" style="color: inherit; text-decoration: none;">
-					<h4>Get dependents</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependents</span>
-</code></pre>
-				<a href="#get-dependents-of-given-service" id="get-dependents-of-given-service" style="color: inherit; text-decoration: none;">
-					<h4>Get dependents of given service</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependents</span><span style="color: #000000">?</span><span style="color: #001080">payments</span><span style="color: #000000">-</span><span style="color: #001080">service</span>
-</code></pre>
-				<a href="#get-dependents-of-given-service-version" id="get-dependents-of-given-service-version" style="color: inherit; text-decoration: none;">
-					<h4>Get dependents of given service version</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">dependents</span><span style="color: #000000">?</span><span style="color: #001080">payments</span><span style="color: #000000">-</span><span style="color: #001080">service</span><span style="color: #000000">@</span><span style="color: #098658">1.3</span><span style="color: #000000">.</span><span style="color: #098658">0</span>
-</code></pre>
-				<a href="#contracts" id="contracts" style="color: inherit; text-decoration: none;">
-					<h3>Contracts</h3>
-				</a>
-				<a href="#get-contracts" id="get-contracts" style="color: inherit; text-decoration: none;">
-					<h4>Get contracts</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">contracts</span>
-</code></pre>
-				<a href="#get-contract" id="get-contract" style="color: inherit; text-decoration: none;">
-					<h4>Get contract</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">contracts</span><span style="color: #000000">?</span><span style="color: #001080">user</span><span style="color: #000000">-</span><span style="color: #001080">api</span><span style="color: #000000">@</span><span style="color: #098658">1.0</span><span style="color: #000000">.</span><span style="color: #098658">0</span>
-</code></pre>
-				<a href="#delete-contract" id="delete-contract" style="color: inherit; text-decoration: none;">
-					<h4>Delete contract</h4>
-				</a>
-				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/contracts</span>
 
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user-api&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.0.0&quot;</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
-					<h3>Tests</h3>
-				</a>
-				<a href="#get-tests" id="get-tests" style="color: inherit; text-decoration: none;">
-					<h4>Get tests</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">tests</span>
-</code></pre>
-				<a href="#get-test" id="get-test" style="color: inherit; text-decoration: none;">
-					<h4>Get test</h4>
-				</a>
-				<pre><code><span style="color: #0070C1">GET</span><span style="color: #000000"> {{</span><span style="color: #0070C1">BROKER_URL</span><span style="color: #000000">}}/</span><span style="color: #001080">tests</span><span style="color: #000000">?</span><span style="color: #001080">payments</span><span style="color: #000000">-</span><span style="color: #001080">service</span><span style="color: #000000">@</span><span style="color: #098658">1.3</span><span style="color: #000000">.</span><span style="color: #098658">0</span>
-</code></pre>
-				<a href="#delete-tests-for-version-of-service" id="delete-tests-for-version-of-service" style="color: inherit; text-decoration: none;">
-					<h4>Delete tests for version of service</h4>
-				</a>
-				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/tests</span>
+<a href="#available-database-repositories" id="available-database-repositories" style="color: inherit; text-decoration: none;">
+  <h2>Available database repositories</h2>
+</a>
+<p>The broker requires a &quot;repository&quot;, i.e. a piece of code that will drive the database.</p>
+<p>Examples above already use some of these. If you&#39;re keen on writing your own broker implementation, you might want to use one of the available repositories:</p>
+<ul>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-cosmosdb-sql">Azure CosmosDB SQL</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-firestore">Google Firestore</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-cloudflarekv">Cloudflare KV</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-dynamodb">AWS DynamoDB</a></li>
+<li><a href="https://github.com/mikaelvesavuori/triplecheck-repository-fauna">FaunaDB</a></li>
+</ul>
 
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payment-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span>
-<span style="color: #000000">}</span>
-</code></pre>
-				<a href="#delete-test" id="delete-test" style="color: inherit; text-decoration: none;">
-					<h4>Delete test</h4>
-				</a>
-				<pre><code class="language-json"><span style="color: #000000">DELETE {</span><span style="color: #CD3131">{BROKER_URL</span><span style="color: #000000">}}/tests</span>
+<a href="#how-do-i-get-started-setting-up-my-own-broker-from-scratch" id="how-do-i-get-started-setting-up-my-own-broker-from-scratch" style="color: inherit; text-decoration: none;">
+  <h2>How do I get started setting up my own broker from scratch?</h2>
+</a>
+<p>It&#39;s pretty easy and do feel free to look at some of the examples for practical references.</p>
+<p>The general gist is that you will need to import the broker, a repository of your choice (see above), and then run the broker with the repository as one of its arguments. The other arguments are <code>request</code> and <code>payload</code>: <code>request</code> being a slightly processed request object (implementation depends on your compute/API context—see the implementations for how they behave) and the <code>payload</code> is simply a parsed JSON object of any request body you may have.</p>
+<p>Some databases require environmental context (variables etc.) and/or keyfiles or explicit configuration objects. Look at the respective repository&#39;s documentation to learn what is expected.</p>
 
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;serviceName&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;payments-service&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;version&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;1.3.0&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;test&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;User payment update&quot;</span>
-<span style="color: #000000">}</span>
+<a href="#example-requests" id="example-requests" style="color: inherit; text-decoration: none;">
+  <h2>Example requests</h2>
+</a>
+
+<a href="#publish" id="publish" style="color: inherit; text-decoration: none;">
+  <h3>Publish</h3>
+</a>
+
+<a href="#publish-1" id="publish-1" style="color: inherit; text-decoration: none;">
+  <h4>Publish #1</h4>
+</a>
+<pre><code class="language-json"><span class="hl-1">POST {</span><span class="hl-2">{BROKER_URL</span><span class="hl-1">}}/publish</span><br/><br/><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;identity&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-3">&quot;name&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;user-api&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">&quot;version&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;1.1.0&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;dependencies&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    </span><span class="hl-4">&quot;payments-service@1.3.0&quot;</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;contracts&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-3">&quot;user-api&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">        </span><span class="hl-3">&quot;1.1.0&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;name&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;Someone&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;address&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;Some Street 123&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;age&quot;</span><span class="hl-1">: </span><span class="hl-5">35</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;tests&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-3">&quot;user-api&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">        </span><span class="hl-3">&quot;1.1.0&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">          {</span><br/><span class="hl-1">            </span><span class="hl-3">&quot;Verify identity&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;name&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;Carmen&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;address&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;Ocean View 3000&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;age&quot;</span><span class="hl-1">: </span><span class="hl-5">27</span><br/><span class="hl-1">            }</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        ]</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  ]</span><br/><span class="hl-1">}</span>
 </code></pre>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Modules</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Broker.html">contracts/<wbr>Broker</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Contract.html">contracts/<wbr>Contract</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_DbItem.html">contracts/<wbr>DbItem</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Identity.html">contracts/<wbr>Identity</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Request.html">contracts/<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Schema.html">contracts/<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Test.html">contracts/<wbr>Test</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Url.html">contracts/<wbr>Url</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/controllers_TripleCheckBrokerController.html">controllers/<wbr>Triple<wbr>Check<wbr>Broker<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/entities_TripleCheckBroker.html">entities/<wbr>Triple<wbr>Check<wbr>Broker</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/frameworks_calculateDbKey.html">frameworks/calculate<wbr>DbKey</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/frameworks_messages.html">frameworks/messages</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/index.html">index</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+
+<a href="#publish-2" id="publish-2" style="color: inherit; text-decoration: none;">
+  <h4>Publish #2</h4>
+</a>
+<pre><code class="language-json"><span class="hl-1">POST {</span><span class="hl-2">{BROKER_URL</span><span class="hl-1">}}/publish</span><br/><br/><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;identity&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-3">&quot;name&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;payments-service&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">&quot;version&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;1.3.0&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;dependencies&quot;</span><span class="hl-1">: [],</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;contracts&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-3">&quot;payments-service&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">        </span><span class="hl-3">&quot;1.3.0&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;userId&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;string&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;invoiceId&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;string&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">          </span><span class="hl-3">&quot;paidInFull&quot;</span><span class="hl-1">: </span><span class="hl-6">false</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;tests&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-3">&quot;payments-service&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">        </span><span class="hl-3">&quot;1.3.0&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">          {</span><br/><span class="hl-1">            </span><span class="hl-3">&quot;User payment update&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;userId&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;823hc73nca&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;invoiceId&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;828612-10273-eff&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">              </span><span class="hl-3">&quot;paidInFull&quot;</span><span class="hl-1">: </span><span class="hl-6">true</span><br/><span class="hl-1">            }</span><br/><span class="hl-1">          }</span><br/><span class="hl-1">        ]</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  ]</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#services" id="services" style="color: inherit; text-decoration: none;">
+  <h3>Services</h3>
+</a>
+
+<a href="#get-services" id="get-services" style="color: inherit; text-decoration: none;">
+  <h4>Get services</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">services</span>
+</code></pre>
+
+<a href="#get-service" id="get-service" style="color: inherit; text-decoration: none;">
+  <h4>Get service</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">services</span><span class="hl-1">?</span><span class="hl-0">payments</span><span class="hl-1">-</span><span class="hl-0">service</span>
+</code></pre>
+
+<a href="#relations" id="relations" style="color: inherit; text-decoration: none;">
+  <h3>Relations</h3>
+</a>
+
+<a href="#get-dependencies" id="get-dependencies" style="color: inherit; text-decoration: none;">
+  <h4>Get dependencies</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependencies</span>
+</code></pre>
+
+<a href="#get-dependencies-of-given-service" id="get-dependencies-of-given-service" style="color: inherit; text-decoration: none;">
+  <h4>Get dependencies of given service</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependencies</span><span class="hl-1">?</span><span class="hl-0">user</span><span class="hl-1">-</span><span class="hl-0">api</span>
+</code></pre>
+
+<a href="#get-dependencies-of-given-service-version" id="get-dependencies-of-given-service-version" style="color: inherit; text-decoration: none;">
+  <h4>Get dependencies of given service version</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependencies</span><span class="hl-1">?</span><span class="hl-0">user</span><span class="hl-1">-</span><span class="hl-0">api</span><span class="hl-1">@</span><span class="hl-5">1.0</span><span class="hl-1">.</span><span class="hl-5">0</span>
+</code></pre>
+
+<a href="#get-dependents" id="get-dependents" style="color: inherit; text-decoration: none;">
+  <h4>Get dependents</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependents</span>
+</code></pre>
+
+<a href="#get-dependents-of-given-service" id="get-dependents-of-given-service" style="color: inherit; text-decoration: none;">
+  <h4>Get dependents of given service</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependents</span><span class="hl-1">?</span><span class="hl-0">payments</span><span class="hl-1">-</span><span class="hl-0">service</span>
+</code></pre>
+
+<a href="#get-dependents-of-given-service-version" id="get-dependents-of-given-service-version" style="color: inherit; text-decoration: none;">
+  <h4>Get dependents of given service version</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">dependents</span><span class="hl-1">?</span><span class="hl-0">payments</span><span class="hl-1">-</span><span class="hl-0">service</span><span class="hl-1">@</span><span class="hl-5">1.3</span><span class="hl-1">.</span><span class="hl-5">0</span>
+</code></pre>
+
+<a href="#contracts" id="contracts" style="color: inherit; text-decoration: none;">
+  <h3>Contracts</h3>
+</a>
+
+<a href="#get-contracts" id="get-contracts" style="color: inherit; text-decoration: none;">
+  <h4>Get contracts</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">contracts</span>
+</code></pre>
+
+<a href="#get-contract" id="get-contract" style="color: inherit; text-decoration: none;">
+  <h4>Get contract</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">contracts</span><span class="hl-1">?</span><span class="hl-0">user</span><span class="hl-1">-</span><span class="hl-0">api</span><span class="hl-1">@</span><span class="hl-5">1.0</span><span class="hl-1">.</span><span class="hl-5">0</span>
+</code></pre>
+
+<a href="#delete-contract" id="delete-contract" style="color: inherit; text-decoration: none;">
+  <h4>Delete contract</h4>
+</a>
+<pre><code class="language-json"><span class="hl-1">DELETE {</span><span class="hl-2">{BROKER_URL</span><span class="hl-1">}}/contracts</span><br/><br/><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;serviceName&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;user-api&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;version&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;1.0.0&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
+  <h3>Tests</h3>
+</a>
+
+<a href="#get-tests" id="get-tests" style="color: inherit; text-decoration: none;">
+  <h4>Get tests</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">tests</span>
+</code></pre>
+
+<a href="#get-test" id="get-test" style="color: inherit; text-decoration: none;">
+  <h4>Get test</h4>
+</a>
+<pre><code><span class="hl-7">GET</span><span class="hl-1"> {{</span><span class="hl-7">BROKER_URL</span><span class="hl-1">}}/</span><span class="hl-0">tests</span><span class="hl-1">?</span><span class="hl-0">payments</span><span class="hl-1">-</span><span class="hl-0">service</span><span class="hl-1">@</span><span class="hl-5">1.3</span><span class="hl-1">.</span><span class="hl-5">0</span>
+</code></pre>
+
+<a href="#delete-tests-for-version-of-service" id="delete-tests-for-version-of-service" style="color: inherit; text-decoration: none;">
+  <h4>Delete tests for version of service</h4>
+</a>
+<pre><code class="language-json"><span class="hl-1">DELETE {</span><span class="hl-2">{BROKER_URL</span><span class="hl-1">}}/tests</span><br/><br/><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;serviceName&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;payment-service&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;version&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;1.3.0&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#delete-test" id="delete-test" style="color: inherit; text-decoration: none;">
+  <h4>Delete test</h4>
+</a>
+<pre><code class="language-json"><span class="hl-1">DELETE {</span><span class="hl-2">{BROKER_URL</span><span class="hl-1">}}/tests</span><br/><br/><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;serviceName&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;payments-service&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;version&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;1.3.0&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">&quot;test&quot;</span><span class="hl-1">: </span><span class="hl-4">&quot;User payment update&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-function"><a href="modules.html#TripleCheckBroker" class="tsd-kind-icon">Triple<wbr/>Check<wbr/>Broker</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
