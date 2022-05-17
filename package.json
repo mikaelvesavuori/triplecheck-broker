@@ -47,7 +47,7 @@
     "license-compliance": "latest",
     "onchange": "latest",
     "ts-jest": "27",
-    "ts-loader": "9",
+    "ts-loader": "9.2.9",
     "ts-node": "latest",
     "typedoc": "latest",
     "typescript": "4"
