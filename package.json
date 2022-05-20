@@ -50,6 +50,6 @@
     "ts-loader": "9",
     "ts-node": "latest",
     "typedoc": "latest",
-    "typescript": "4"
+    "typescript": "4.6.4"
   }
 }
