@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "alwaysStrict": true,
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["esnext", "webworker"],
+    "lib": ["esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "build",
@@ -14,7 +13,8 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "types": ["jest", "node"],
+    "types": ["jest", "node"]
   },
-  "exclude": ["./node_modules/", "./build/", "__tests__/", "__testdata__/", "implementations/"]
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"],
+  "exclude": ["./node_modules/", "./lib/"]
 }

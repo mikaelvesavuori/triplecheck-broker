@@ -28,7 +28,8 @@
     "test:watch": "jest --coverage --watchAll",
     "licenses": "npx license-compliance --production --allow 'MIT;ISC;BSD-2-Clause;BSD-3-Clause;0BSD;Apache-2.0;Unlicense'",
     "licenses:checker": "npx license-compatibility-checker",
-    "docs": "npx typedoc src && npx arkit",
+    "docs": "npm run docs:typedoc && npx arkit",
+    "docs:typedoc": "npx typedoc --entryPoints src/index.ts --entryPointStrategy expand --exclude '**/*+(test).ts' --exclude 'node_modules/**/*' --excludeExternals --out docs/",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -38,18 +39,18 @@
     "@types/jest": "latest",
     "@types/node": "latest",
     "arkit": "1",
-    "eslint": "7",
+    "eslint": "8",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
-    "husky": "7",
-    "jest": "27",
+    "husky": "8",
+    "jest": "28",
     "license-compatibility-checker": "latest",
     "license-compliance": "latest",
     "onchange": "latest",
-    "ts-jest": "27.1.5",
+    "ts-jest": "28",
     "ts-loader": "9",
     "ts-node": "latest",
     "typedoc": "latest",
-    "typescript": "4"
+    "typescript": "4.7.4"
   }
 }

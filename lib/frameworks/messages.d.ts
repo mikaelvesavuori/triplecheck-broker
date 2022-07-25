@@ -1,0 +1,13 @@
+export declare const msgFinishedGettingData: (key: string) => string;
+export declare const msgFinishedPuttingData = "Finished putting new data";
+export declare const msgFinishedDeletingData = "Finished deleting data";
+export declare const msgFinishedUpdatingTests = "Finished updating tests";
+export declare const msgFinishedDeletingTest: (key: string) => string;
+export declare const msgFinishedDeletingContract: (key: string) => string;
+export declare const msgUnknownService = "Sorry, could not find the service...";
+export declare const warnUpdateContractsMissingRequiredVariables = "Missing one or more of required arguments \"type\", \"name\", \"version\" and/or \"data\"! Skipping adding this contract...";
+export declare const warnUpdateTestsMissingRequiredVariables = "Missing one or more of required arguments \"type\", \"name\", and/or \"version\"! Skipping adding this test...";
+export declare const errorRouterMissingParams = "Missing arguments \"method\" and/or \"pathname\" in router()!";
+export declare const errorGetDataMissingKey = "Missing arguments \"key\" in getData()!";
+export declare const errorUpdateDataMissingData = "Missing arguments \"data\" in updateData()!";
+export declare const errorDeleteDataMissingParams = "Missing arguments \"type\" and/or \"serviceName\" in deleteData()!";
