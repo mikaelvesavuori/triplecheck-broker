@@ -36,7 +36,7 @@
     "triplecheck-core": "latest"
   },
   "devDependencies": {
-    "@types/jest": "latest",
+    "@types/jest": "28.1.7",
     "@types/node": "latest",
     "arkit": "1",
     "eslint": "8",
