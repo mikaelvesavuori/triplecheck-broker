@@ -47,7 +47,7 @@
     "license-compatibility-checker": "latest",
     "license-compliance": "latest",
     "onchange": "latest",
-    "ts-jest": "28",
+    "ts-jest": "28.0.8",
     "ts-loader": "9",
     "ts-node": "latest",
     "typedoc": "latest",
